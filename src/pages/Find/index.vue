@@ -165,7 +165,7 @@ const ellipsis = (data: string): string => {
   overflow: hidden;
 
   div:nth-child(1) {
-    i{
+    i {
       font-size: 40px;
     }
   }
@@ -182,8 +182,9 @@ const ellipsis = (data: string): string => {
       font-size: 25px;
     }
   }
-  div:nth-child(3){
-    i{
+
+  div:nth-child(3) {
+    i {
       font-size: 40px;
     }
   }
@@ -229,14 +230,14 @@ const ellipsis = (data: string): string => {
 
     div:nth-child(1) {
       font-size: 33px;
-      font-weight: 500px;
+      font-weight: 500;
     }
 
     div:nth-child(2) {
-      border: 1px solid gray;
+      border: 1px solid #666666;
       border-radius: 20px;
-      height: 40px;
       width: 110px;
+      padding-top: 5px;
       text-align: center;
       font-size: 25px;
     }
@@ -264,10 +265,12 @@ const ellipsis = (data: string): string => {
       filter: blur(0.8);
 
       span:nth-child(1) {
-        vertical-align: middle;
 
         i {
           font-size: 20px;
+          vertical-align: middle;
+          display: inline-block;
+          margin-top: -4px;
         }
       }
 
