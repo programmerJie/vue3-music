@@ -21,7 +21,7 @@
       <img :src="songListdetails.img" alt="">
     </div>
     <div class="right">
-      <p>{{ result1(songListdetails.name) }}</p>
+      <p>{{ result1(songListdetails.name) }} </p>
       <p>
         <span><img :src="songListdetails.userImg" alt=""></span>
         <span>{{ result2(songListdetails.nickName) }} ></span>
@@ -34,16 +34,16 @@
   <div class="clear"></div>
   <div class="footer">
     <div>
-      <span><i class="iconfont">&#xe60f;</i> </span>
+      <span><i class="iconfont">&#xe60f;&nbsp;</i></span>
       <span>{{ subscribedCount(songListdetails.subscribedCount) }}</span>
     </div>
     <div>
-      <span><i class="iconfont">&#xe763;</i> </span>
+      <span><i class="iconfont">&#xe763;&nbsp;</i></span>
       <span>{{ songListdetails.commentCount }}</span>
     </div>
     <div>
-      <span><i class="iconfont">&#xe86e;</i> </span>
-      <span>{{ songListdetails.shareCount }}</span>
+      <span><i class="iconfont">&#xe86e;&nbsp;</i></span>
+      <span>{{ songListdetails.shareCount }} </span>
     </div>
   </div>
   <div class="songListTitle">
@@ -61,8 +61,8 @@
     <div class="left">
       <span class="leftSpan">{{ index + 1 }}</span>
       <div class="leftDiv">
-        <span>{{ item.name }}</span>
-        <span>{{ item['ar'][0].name }}-{{ item['al'].name }}</span>
+        <span>{{ result4(item.name) }}</span>
+        <span>{{ item['ar'][0].name }}-{{ result5(item['al'].name) }}</span>
       </div>
     </div>
     <div class="right">
@@ -73,7 +73,7 @@
 </template>
 <script lang="ts" setup>
 import {useRouter, useRoute} from "vue-router";
-import {onBeforeMount, onMounted, reactive} from "vue";
+import {onMounted, reactive} from "vue";
 import {songListDetailsApi, songListApi} from "../../../api/Find";
 
 const router = useRouter()
@@ -116,6 +116,7 @@ onMounted(async () => {
   console.log(res2.data)
 
 })
+//把播放次数的数字转换为汉字
 const count = (data: number): string | number => {
   if (data >= 100000000) {
     return (data / 100000000).toFixed(1) + '亿'
@@ -125,27 +126,7 @@ const count = (data: number): string | number => {
     return data
   }
 }
-const result1 = (data: string): string => {
-  if (data.length >= 15) {
-    return data.slice(1, 15) + '...'
-  } else {
-    return data
-  }
-}
-const result2 = (data: string): string => {
-  if (data.length >= 18) {
-    return data.slice(1, 18) + '...'
-  } else {
-    return data
-  }
-}
-const result3 = (data: string): string => {
-  if (data.length >= 18) {
-    return data.slice(1, 18) + '...'
-  } else {
-    return data
-  }
-}
+//把订阅的人数的数字转换为汉字
 const subscribedCount = (data: number) => {
   if (data >= 100000) {
     return (data / 10000).toFixed(1) + '万'
@@ -153,6 +134,47 @@ const subscribedCount = (data: number) => {
     return data
   }
 }
+//判断歌单列表标题的长度,如果超过就省略
+const result1 = (data: string): string => {
+  if (data.length >= 15) {
+    return data.slice(1, 15) + '...'
+  } else {
+    return data
+  }
+}
+//判断歌单列表用户名字的字符长度,如果超过就省略
+const result2 = (data: string): string => {
+  if (data.length >= 18) {
+    return data.slice(1, 18) + '...'
+  } else {
+    return data
+  }
+}
+//判断歌单列表描述歌单的字符长度,如果超过就省略
+const result3 = (data: string): string => {
+  if (data.length >= 16) {
+    return data.slice(1, 16) + '...'
+  } else {
+    return data
+  }
+}
+//判断歌单列表列歌名的字符长度,如果超过就省略
+const result4 = (data: string): string => {
+  if (data.length >= 18) {
+    return data.slice(1, 18) + '...'
+  } else {
+    return data
+  }
+}
+//判断歌单列表里歌名的字符长度,如果超过就省略
+const result5 = (data: string): string => {
+  if (data.length >= 16) {
+    return data.slice(1, 16) + '...'
+  } else {
+    return data
+  }
+}
+
 </script>
 
 <style scoped lang="less">

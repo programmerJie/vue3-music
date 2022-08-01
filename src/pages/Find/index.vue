@@ -26,55 +26,55 @@
       </van-swipe-item>
       <van-swipe-item>
         <div>
-          <p><i class="iconfont">&#xe65b;</i></p>
+          <p><i class="iconfont">&#xe636;</i></p>
           <p>私人FM</p>
         </div>
       </van-swipe-item>
       <van-swipe-item>
         <div>
-          <p><i class="iconfont">&#xe65b;</i></p>
+          <p><i class="iconfont">&#xe637;</i></p>
           <p>歌单</p>
         </div>
       </van-swipe-item>
       <van-swipe-item>
         <div>
-          <p><i class="iconfont">&#xe65b;</i></p>
+          <p><i class="iconfont">&#xe6c5;</i></p>
           <p>排行榜</p>
         </div>
       </van-swipe-item>
       <van-swipe-item>
         <div>
-          <p><i class="iconfont">&#xe65b;</i></p>
+          <p><i class="iconfont">&#xe601;</i></p>
           <p>有声书</p>
         </div>
       </van-swipe-item>
       <van-swipe-item>
         <div>
-          <p><i class="iconfont">&#xe65b;</i></p>
+          <p><i class="iconfont">&#xe6b5;</i></p>
           <p>数字专辑</p>
         </div>
       </van-swipe-item>
       <van-swipe-item>
         <div>
-          <p><i class="iconfont">&#xe65b;</i></p>
+          <p><i class="iconfont">&#xe74f;</i></p>
           <p>直播</p>
         </div>
       </van-swipe-item>
       <van-swipe-item>
         <div>
-          <p><i class="iconfont">&#xe65b;</i></p>
+          <p><i class="iconfont">&#xe8bc;</i></p>
           <p>关注新歌</p>
         </div>
       </van-swipe-item>
       <van-swipe-item>
         <div>
-          <p><i class="iconfont">&#xe65b;</i></p>
+          <p><i class="iconfont">&#xe602;</i></p>
           <p>歌房</p>
         </div>
       </van-swipe-item>
       <van-swipe-item>
         <div>
-          <p><i class="iconfont">&#xe65b;</i></p>
+          <p><i class="iconfont">&#xe67e;</i></p>
           <p>游戏专区</p>
         </div>
       </van-swipe-item>
@@ -208,6 +208,7 @@ const ellipsis = (data: string): string => {
     p:nth-child(1) {
       .iconfont {
         font-size: 50px;
+        color: red;
       }
     }
 

@@ -6,6 +6,55 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1344",
+      "name": "夜景",
+      "font_class": "yejing",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "82381",
+      "name": "游戏",
+      "font_class": "94",
+      "unicode": "e67e",
+      "unicode_decimal": 59006
+    },
+    {
+      "icon_id": "11372718",
+      "name": "我的关注",
+      "font_class": "wodeguanzhu",
+      "unicode": "e8bc",
+      "unicode_decimal": 59580
+    },
+    {
+      "icon_id": "1110426",
+      "name": "音乐",
+      "font_class": "yinle1",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "11520120",
+      "name": "直播",
+      "font_class": "zhibo",
+      "unicode": "e74f",
+      "unicode_decimal": 59215
+    },
+    {
+      "icon_id": "21303003",
+      "name": "专辑",
+      "font_class": "zhuanji",
+      "unicode": "e6b5",
+      "unicode_decimal": 59061
+    },
+    {
+      "icon_id": "5147",
+      "name": "图书音像",
+      "font_class": "tushuyinxiang",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
       "icon_id": "4171423",
       "name": "订阅",
       "font_class": "dingyue",
