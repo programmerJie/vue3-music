@@ -73,7 +73,7 @@
 </template>
 <script lang="ts" setup>
 import {useRouter, useRoute} from "vue-router";
-import {onBeforeMount, reactive} from "vue";
+import {onBeforeMount, onMounted, reactive} from "vue";
 import {songListDetailsApi, songListApi} from "../../../api/Find";
 
 const router = useRouter()
@@ -98,7 +98,7 @@ let songList: any = reactive({
   music: []
 })
 
-onBeforeMount(async () => {
+onMounted(async () => {
   songListdetails.id = route.query.id
   const res = await songListDetailsApi(songListdetails.id)
   songListdetails.img = res.data.playlist.coverImgUrl

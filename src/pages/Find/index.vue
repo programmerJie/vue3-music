@@ -118,7 +118,7 @@ const searchKwords = reactive({
 const showPopup = (): void => {
   show.value = true;
 };
-onBeforeMount(async () => {
+onMounted(async () => {
   const a = await BannerApi()
   banners.img = a.data.banners
   const b = await recommendMusicApi()
@@ -130,7 +130,7 @@ onBeforeMount(async () => {
 const count = (data: number): string | number => {
   if (data >= 100000000) {
     return (data / 100000000).toFixed(1) + '亿'
-  } else if (data >= 10000) {
+  } else if (data >= 100000) {
     return (data / 10000).toFixed(1) + '万'
   } else {
     return data
@@ -164,6 +164,12 @@ const ellipsis = (data: string): string => {
   justify-content: space-between;
   overflow: hidden;
 
+  div:nth-child(1) {
+    i{
+      font-size: 40px;
+    }
+  }
+
   div:nth-child(2) {
     input {
       width: 580px;
@@ -174,6 +180,11 @@ const ellipsis = (data: string): string => {
       background: #f5f2f0;
       text-align: center;
       font-size: 25px;
+    }
+  }
+  div:nth-child(3){
+    i{
+      font-size: 40px;
     }
   }
 }
@@ -195,13 +206,13 @@ const ellipsis = (data: string): string => {
   div {
     p:nth-child(1) {
       .iconfont {
-        font-size: 40px;
+        font-size: 50px;
       }
     }
 
     p:nth-child(2) {
       margin-top: 10px;
-      font-size: 20px;
+      font-size: 25px;
       color: gray;
     }
   }
@@ -252,6 +263,14 @@ const ellipsis = (data: string): string => {
 
       span:nth-child(1) {
         vertical-align: middle;
+
+        i {
+          font-size: 20px;
+        }
+      }
+
+      span:nth-child(2) {
+        font-size: 20px;
       }
     }
 

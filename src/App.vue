@@ -8,7 +8,7 @@ const route = useRoute()
   <router-view/>
 
   <van-tabbar route class="tabbar" active-color="red" v-if="route.path!=='/jump'">
-    <van-tabbar-item replace to="/">
+    <van-tabbar-item replace to="/" class="find">
       <div><i class="iconfont">&#xe63b;</i></div>
       <div>发现</div>
     </van-tabbar-item>
@@ -32,6 +32,18 @@ const route = useRoute()
 .tabbar {
   height: 90px;
   text-align: center;
+
+  .find {
+    div:nth-child(1) {
+      i {
+        font-size: 50px;
+      }
+    }
+    div:nth-child(2){
+      padding-top: 10px;
+      font-size: 25px;
+    }
+  }
 }
 
 </style>
