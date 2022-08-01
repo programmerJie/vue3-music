@@ -174,8 +174,8 @@ const ellipsis = (data: string): string => {
     input {
       width: 580px;
       outline: none;
-      height: 60px;
-      border-radius: 20px;
+      height: 70px;
+      border-radius: 35px;
       border: none;
       background: #f5f2f0;
       text-align: center;
@@ -237,7 +237,8 @@ const ellipsis = (data: string): string => {
       border: 1px solid #666666;
       border-radius: 20px;
       width: 110px;
-      padding-top: 5px;
+      height: 40px;
+      line-height: 40px;
       text-align: center;
       font-size: 25px;
     }

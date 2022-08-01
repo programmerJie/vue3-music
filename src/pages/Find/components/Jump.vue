@@ -215,7 +215,8 @@ const subscribedCount = (data: number) => {
 
       span:nth-child(1) {
         i {
-          font-size: 26px;
+          font-size: 18px;
+          vert-align: middle;
         }
       }
     }
@@ -251,7 +252,7 @@ const subscribedCount = (data: number) => {
 
       span:nth-child(2) {
         color: white;
-        font-size: 20px;
+        font-size: 25px;
         padding-left: 10px;
       }
     }
@@ -261,7 +262,7 @@ const subscribedCount = (data: number) => {
 
       span {
         color: white;
-        font-size: 20px;
+        font-size: 25px;
       }
     }
   }
