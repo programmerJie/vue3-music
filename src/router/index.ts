@@ -13,6 +13,10 @@ const routes: Array<RouteRecordRaw> = [
         path: "/mine",
         component: () => import("../pages/Mine/index.vue"),
     },
+    {
+        path: "/comment",
+        component: () => import("../pages/Find/components/Comment.vue")
+    }
 ];
 
 const router = createRouter({

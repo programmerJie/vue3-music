@@ -7,7 +7,7 @@ const route = useRoute()
 <template>
   <router-view/>
 
-  <van-tabbar route class="tabbar" active-color="red" v-if="route.path!=='/jump'">
+  <van-tabbar route class="tabbar" active-color="red" v-if="route.path!=='/jump'&& route.path!=='/comment'">
     <van-tabbar-item replace to="/" class="find">
       <div><i class="iconfont">&#xe63b;</i></div>
       <div>发现</div>
@@ -39,18 +39,21 @@ const route = useRoute()
         font-size: 50px;
       }
     }
-    div:nth-child(2){
+
+    div:nth-child(2) {
       padding-top: 10px;
       font-size: 25px;
     }
   }
-  .mine{
+
+  .mine {
     div:nth-child(1) {
       i {
         font-size: 50px;
       }
     }
-    div:nth-child(2){
+
+    div:nth-child(2) {
       padding-top: 10px;
       font-size: 25px;
     }

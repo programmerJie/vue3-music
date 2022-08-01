@@ -1,12 +1,13 @@
-import { createApp } from "vue";
+import {createApp} from "vue";
 import "./style.css";
 import App from "./App.vue";
-import { createPinia } from "pinia";
+import {createPinia} from "pinia";
 import router from "./router";
 //引入vant组件库
 import "./vant/index.ts";
 //引入字体文件
-import "./assets/font/iconfont.css";
+import '../src/assets/font/index.css'
+
 const pinia = createPinia();
 const app = createApp(App);
 app.use(pinia);

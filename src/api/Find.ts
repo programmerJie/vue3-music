@@ -28,9 +28,17 @@ export const searchKwordsApi = () => {
         method: 'GET'
     })
 }
+//获取歌单列表
 export const songListApi = (data: number) => {
     return request({
         url: `/playlist/track/all?id=${data}&limit=10&offset=1`,
+        method: 'GET'
+    })
+}
+//获取歌单评论
+export const songlistCommentApi = (data: number) => {
+    return request({
+        url: `/comment/playlist?id=${data}`,
         method: 'GET'
     })
 }
