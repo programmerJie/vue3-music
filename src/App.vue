@@ -12,9 +12,9 @@ const route = useRoute()
       <div><i class="iconfont">&#xe63b;</i></div>
       <div>发现</div>
     </van-tabbar-item>
-    <van-tabbar-item replace to="/mine">
+    <van-tabbar-item replace to="/mine" class="mine">
       <div><i class="iconfont">&#xe60c;</i></div>
-      <div></div>
+      <div>我的</div>
     </van-tabbar-item>
   </van-tabbar>
 </template>
@@ -34,6 +34,17 @@ const route = useRoute()
   text-align: center;
 
   .find {
+    div:nth-child(1) {
+      i {
+        font-size: 50px;
+      }
+    }
+    div:nth-child(2){
+      padding-top: 10px;
+      font-size: 25px;
+    }
+  }
+  .mine{
     div:nth-child(1) {
       i {
         font-size: 50px;

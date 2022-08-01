@@ -233,7 +233,7 @@ const ellipsis = (data: string): string => {
 
     div:nth-child(2) {
       border: 1px solid gray;
-      border-radius: 15px;
+      border-radius: 20px;
       height: 40px;
       width: 110px;
       text-align: center;

@@ -250,7 +250,7 @@ const subscribedCount = (data: number) => {
       }
 
       span:nth-child(2) {
-        color: #666666;
+        color: white;
         font-size: 20px;
         padding-left: 10px;
       }
@@ -260,7 +260,7 @@ const subscribedCount = (data: number) => {
       padding-top: 35px;
 
       span {
-        color: #666666;
+        color: white;
         font-size: 20px;
       }
     }
