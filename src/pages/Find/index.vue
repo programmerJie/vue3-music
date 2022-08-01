@@ -228,7 +228,8 @@ const ellipsis = (data: string): string => {
     padding-top: 10px;
 
     div:nth-child(1) {
-      font-size: 30px;
+      font-size: 33px;
+      font-weight: 500px;
     }
 
     div:nth-child(2) {
@@ -237,6 +238,7 @@ const ellipsis = (data: string): string => {
       height: 40px;
       width: 110px;
       text-align: center;
+      font-size: 25px;
     }
   }
 
