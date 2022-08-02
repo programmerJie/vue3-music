@@ -21,13 +21,17 @@
       <img :src="songListdetails.img" alt="">
     </div>
     <div class="right">
-      <p>{{ result1(songListdetails.name) }} </p>
       <p>
-        <span><img :src="songListdetails.userImg" alt=""></span>
-        <span>{{ result2(songListdetails.nickName) }} ></span>
+        <span>{{ result1(songListdetails.name) }} </span>
       </p>
       <p>
-        <span>{{ result3(songListdetails.description) }} ></span>
+        <span><img :src="songListdetails.userImg" alt=""></span>
+        <span>{{ result2(songListdetails.nickName) }}</span>
+        <span><i class="iconfont">&#xe625;</i></span>
+      </p>
+      <p>
+        <span>{{ result3(songListdetails.description) }}</span>
+        <span><i class="iconfont">&#xe625;</i></span>
       </p>
     </div>
   </div>
@@ -76,7 +80,7 @@
 <script lang="ts" setup>
 import {useRouter, useRoute} from "vue-router";
 import {onMounted, reactive} from "vue";
-import {songListDetailsApi, songListApi} from "../../../api/Find";
+import {songListDetailsApi, songListApi} from "../../../api/SongList";
 
 const router = useRouter()
 const route = useRoute()
@@ -137,8 +141,8 @@ const subscribedCount = (data: number) => {
 }
 //判断歌单列表标题的长度,如果超过就省略
 const result1 = (data: string): string => {
-  if (data.length >= 15) {
-    return data.slice(1, 15) + '...'
+  if (data.length >= 14) {
+    return data.slice(0, 14) + '...'
   } else {
     return data
   }
@@ -146,7 +150,7 @@ const result1 = (data: string): string => {
 //判断歌单列表用户名字的字符长度,如果超过就省略
 const result2 = (data: string): string => {
   if (data.length >= 18) {
-    return data.slice(1, 18) + '...'
+    return data.slice(0, 18) + '...'
   } else {
     return data
   }
@@ -154,7 +158,7 @@ const result2 = (data: string): string => {
 //判断歌单列表描述歌单的字符长度,如果超过就省略
 const result3 = (data: string): string => {
   if (data.length >= 16) {
-    return data.slice(1, 16) + '...'
+    return data.slice(0, 16) + '...'
   } else {
     return data
   }
@@ -162,7 +166,7 @@ const result3 = (data: string): string => {
 //判断歌单列表列歌名的字符长度,如果超过就省略
 const result4 = (data: string): string => {
   if (data.length >= 18) {
-    return data.slice(1, 18) + '...'
+    return data.slice(0, 18) + '...'
   } else {
     return data
   }
@@ -170,7 +174,7 @@ const result4 = (data: string): string => {
 //判断歌单列表里歌名的字符长度,如果超过就省略
 const result5 = (data: string): string => {
   if (data.length >= 16) {
-    return data.slice(1, 16) + '...'
+    return data.slice(0, 16) + '...'
   } else {
     return data
   }
@@ -278,14 +282,31 @@ const result5 = (data: string): string => {
         font-size: 25px;
         padding-left: 10px;
       }
+
+      span:nth-child(3) {
+        i {
+          font-size: 30px;
+          color: white;
+          vertical-align: middle;
+          margin-left: 5px;
+        }
+      }
     }
 
     p:nth-child(3) {
       padding-top: 35px;
 
-      span {
+      span:nth-child(1) {
         color: white;
         font-size: 25px;
+      }
+
+      span:nth-child(2) {
+        i {
+          font-size: 30px;
+          color: white;
+          vertical-align: middle;
+        }
       }
     }
   }

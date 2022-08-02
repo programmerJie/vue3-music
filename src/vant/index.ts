@@ -14,6 +14,8 @@ import {Swipe, SwipeItem} from 'vant';
 import {PullRefresh} from 'vant';
 //引入图片懒加载
 import {Lazyload} from 'vant';
+//引入加载过度
+import {Loading} from 'vant';
 //创建标签栏实例
 app.use(Tabbar);
 app.use(TabbarItem);
@@ -26,3 +28,5 @@ app.use(SwipeItem)
 app.use(PullRefresh)
 //创建图片懒加载实例
 app.use(Lazyload)
+//创建加载过度实例
+app.use(Loading)

@@ -10,9 +10,9 @@
     <div><i class="iconfont">&#xe7e8;</i></div>
   </div>
   <div class="bannar">
-    <van-swipe :autoplay="3000" lazy-render>
+    <van-swipe :autoplay="3000" lazy-render  style="border-radius: 9px">
       <van-swipe-item v-for="item in banners.img" :key="item">
-        <img :src="item['pic']"/>
+        <img :src="item['pic']"  />
       </van-swipe-item>
     </van-swipe>
   </div>
@@ -83,7 +83,10 @@
   <div class="recommendMUsic">
     <div class="recommendMusicTitle">
       <div>推荐歌单</div>
-      <div>更多 ></div>
+      <div>
+        <span>更多</span>
+        <span><i class="iconfont">&#xe625;</i></span>
+      </div>
     </div>
     <div class="recommendMusicContent">
       <van-swipe :loop="false" :show-indicators="false" class="style" :width="120">
@@ -136,10 +139,10 @@ const count = (data: number): string | number => {
     return data
   }
 }
-//大于等于8个字符的用省略号表示
+//判断歌单列表描述歌单的字符长度,如果超过就省略
 const ellipsis = (data: string): string => {
-  if (data.length >= 8) {
-    return data.slice(1, 8) + '...'
+  if (data.length >= 9) {
+    return data.slice(0, 9) + '...'
   } else {
     return data
   }
@@ -285,7 +288,6 @@ const ellipsis = (data: string): string => {
       position: relative;
       height: 50px;
       line-height: 50px;
-      text-align: center;
       color: black;
     }
 
