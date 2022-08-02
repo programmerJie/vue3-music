@@ -2,7 +2,7 @@
   <div class="navBar">
     <div class="left">
       <i class="iconfont" @click="btn">&#xe697;</i>
-      <video autoplay controls="controls" :src="mv.url"></video>
+      <video autoplay controls :src="mv.url"></video>
     </div>
   </div>
 </template>
