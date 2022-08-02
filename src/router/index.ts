@@ -8,20 +8,27 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("../pages/Find/index.vue"),
     },
     {
-        //歌单
+        //歌单列表
         path: '/songList',
         name: 'songList',
         component: () => import("../pages/Find/SongList/index.vue"),
     },
     {
-        //评论
+        //歌单评论
         path: "/comment",
         name: 'comment',
         component: () => import("../pages/Find/Comment/index.vue")
     },
     {
+        //mv
+        path: '/mv',
+        name: 'mv',
+        component: () => import("../pages/Find/Mv/index.vue")
+    },
+    {
         //我的
         path: "/mine",
+        name: 'name',
         component: () => import("../pages/Mine/index.vue"),
     },
 ];

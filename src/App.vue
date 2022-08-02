@@ -7,7 +7,10 @@ const route = useRoute()
 <template>
   <router-view/>
 
-  <van-tabbar route class="tabBar" active-color="red" v-if="route.path!=='/songList'&& route.path!=='/comment'">
+  <van-tabbar route class="tabBar" active-color="red"
+              v-if="route.path!=='/songList'
+              &&route.path!=='/comment'
+              &&route.path!=='/mv'">
     <van-tabbar-item replace to="/" class="find">
       <div><i class="iconfont">&#xe63b;</i></div>
       <div>发现</div>

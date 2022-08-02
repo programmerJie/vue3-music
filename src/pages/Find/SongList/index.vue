@@ -42,7 +42,7 @@
       <span>{{ subscribedCount(songListdetails.subscribedCount) }}</span>
     </div>
     <div>
-      <router-link :to="{path:'/comment',query:{id:songListdetails.id}}">
+      <router-link :to="{path:'/comment',query:{id:songListdetails['id']}}">
         <span><i class="iconfont">&#xe763;&nbsp;</i></span>
         <span>{{ songListdetails.commentCount }}</span>
       </router-link>
@@ -72,7 +72,9 @@
       </div>
     </div>
     <div class="right">
-      <span v-if="item['mv']!==0"><i class="iconfont">&#xe665;</i></span>
+      <router-link :to="{path:'/mv',query: {id:item['mv']}}">
+        <span v-if="item['mv']!==0"><i class="iconfont">&#xe665;</i></span>
+      </router-link>
       <span><i class="iconfont">&#xe8c4;</i></span>
     </div>
   </div>
@@ -119,6 +121,7 @@ onMounted(async () => {
   songListdetails.trackCount = res.data.playlist.trackCount
   const res2 = await songListApi(songListdetails.id)
   songList.music = res2.data.songs
+  console.log(songList.music)
 
 })
 //把播放次数的数字转换为汉字
@@ -165,16 +168,16 @@ const result3 = (data: string): string => {
 }
 //判断歌单列表列歌名的字符长度,如果超过就省略
 const result4 = (data: string): string => {
-  if (data.length >= 18) {
-    return data.slice(0, 18) + '...'
+  if (data.length >= 16) {
+    return data.slice(0, 16) + '...'
   } else {
     return data
   }
 }
 //判断歌单列表里歌名的字符长度,如果超过就省略
 const result5 = (data: string): string => {
-  if (data.length >= 16) {
-    return data.slice(0, 16) + '...'
+  if (data.length >= 12) {
+    return data.slice(0, 12) + '...'
   } else {
     return data
   }

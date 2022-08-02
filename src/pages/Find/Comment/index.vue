@@ -199,7 +199,7 @@ const btn3 = () => {
   justify-content: space-between;
   padding: 29px;
   flex-wrap: wrap;
-  border-bottom: 1px solid #666666;
+  border-bottom: 1px solid #f5f2f0;
 
   .left {
     display: flex;
@@ -257,7 +257,7 @@ const btn3 = () => {
   justify-content: space-between;
   padding: 29px;
   flex-wrap: wrap;
-  border-bottom: 1px solid #666666;
+  border-bottom: 1px solid #f5f2f0;
 
   .left {
     display: flex;
@@ -315,7 +315,7 @@ const btn3 = () => {
   justify-content: space-between;
   padding: 29px;
   flex-wrap: wrap;
-  border-bottom: 1px solid #666666;
+  border-bottom: 1px solid #f5f2f0;
 
   .left {
     display: flex;
