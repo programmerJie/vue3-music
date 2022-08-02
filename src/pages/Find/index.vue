@@ -91,7 +91,7 @@
     <div class="recommendMusicContent">
       <van-swipe :loop="false" :show-indicators="false" class="style" :width="120">
         <van-swipe-item v-for="item in recommendMusicList.data" :key="item">
-          <router-link :to="{path:'/jump',query:{id:item['id']}}">
+          <router-link :to="{path:'/songList',query:{id:item['id']}}">
             <p><span><i class="iconfont">&#xe600;</i></span><span>{{ count(item['playCount']) }}</span></p>
             <img :src="item['picUrl']" alt="" style="width: 105px;">
             <p>{{ ellipsis(item['name']) }}</p>
@@ -100,6 +100,7 @@
       </van-swipe>
     </div>
   </div>
+
 </template>
 <script setup lang="ts">
 import {ref, onMounted, onBeforeMount, reactive} from 'vue';

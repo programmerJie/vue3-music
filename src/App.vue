@@ -7,7 +7,7 @@ const route = useRoute()
 <template>
   <router-view/>
 
-  <van-tabbar route class="tabbar" active-color="red" v-if="route.path!=='/jump'&& route.path!=='/comment'">
+  <van-tabbar route class="tabBar" active-color="red" v-if="route.path!=='/songList'&& route.path!=='/comment'">
     <van-tabbar-item replace to="/" class="find">
       <div><i class="iconfont">&#xe63b;</i></div>
       <div>发现</div>
@@ -29,7 +29,7 @@ const route = useRoute()
   -moz-osx-font-smoothing: grayscale;
 }
 
-.tabbar {
+.tabBar {
   height: 90px;
   text-align: center;
 

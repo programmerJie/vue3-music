@@ -72,7 +72,7 @@
       </div>
     </div>
     <div class="right">
-      <span v-if="item.mv!==0"><i class="iconfont">&#xe665;</i></span>
+      <span v-if="item['mv']!==0"><i class="iconfont">&#xe665;</i></span>
       <span><i class="iconfont">&#xe8c4;</i></span>
     </div>
   </div>
