@@ -58,6 +58,7 @@ const route = useRoute()
     }
 
     span:nth-child(1) {
+      background: #000;
       .img {
         width: 90px;
         height: 90px;

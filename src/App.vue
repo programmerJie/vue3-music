@@ -70,6 +70,7 @@ const route = useRoute()
   bottom: 7%;
   display: flex;
   justify-content: space-between;
+  background: red;
 
   .left {
     padding-left: 29px;
@@ -79,22 +80,29 @@ const route = useRoute()
     }
 
     span:nth-child(1) {
+      background: #000;
+      height: 84px;
+      width: 84px;
+      border-radius: 42px;
+      display: inline-block;
       .img {
-        width: 90px;
-        height: 90px;
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        display: inline-block;
+        padding-left: 17px;
+        padding-top: 17px;
       }
     }
 
     span:nth-child(2) {
       display: inline-block;
-      margin-top: -30px;
       margin-left: 10px;
       font-size: 28px;
     }
 
     span:nth-child(3) {
       display: inline-block;
-      margin-top: -30px;
       font-size: 20px;
       color: #666666;
     }
