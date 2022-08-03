@@ -78,11 +78,14 @@
       <span><i class="iconfont">&#xe8c4;</i></span>
     </div>
   </div>
+  <div class="style"></div>
+  <play-er></play-er>
 </template>
 <script lang="ts" setup>
 import {useRouter, useRoute} from "vue-router";
 import {onMounted, reactive} from "vue";
 import {songListDetailsApi, songListApi} from "../../../api/SongList";
+import PlayEr from "../../../components/playEr.vue";
 
 const router = useRouter()
 const route = useRoute()
@@ -121,7 +124,6 @@ onMounted(async () => {
   songListdetails.trackCount = res.data.playlist.trackCount
   const res2 = await songListApi(songListdetails.id)
   songList.music = res2.data.songs
-  console.log(songList.music)
 
 })
 //把播放次数的数字转换为汉字
@@ -480,4 +482,8 @@ const result5 = (data: string): string => {
     }
   }
 }
+.style{
+  margin-bottom: 90px;
+}
+
 </style>

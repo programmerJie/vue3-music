@@ -1,20 +1,5 @@
-<script setup lang="ts">
-import {useRoute} from "vue-router";
-import {reactive} from "vue";
-import {storeApi} from "./store";
-
-const store = storeApi()
-
-const route = useRoute()
-
-</script>
-
 <template>
-  <router-view/>
-  <div class="style"></div>
-  <div class="playEr"
-       v-if="route.path!=='/comment'
-       &&route.path!=='/songList'&&route.path!=='/mv'">
+  <div class="playEr">
     <div class="left">
       <span>
         <van-image
@@ -31,45 +16,39 @@ const route = useRoute()
       <span><i class="iconfont">&#xe640;</i></span>
     </div>
   </div>
-  <van-tabbar route :border="false" class="tabBar" active-color="red"
-              v-if="route.path!=='/songList'
-              &&route.path!=='/comment'
-              &&route.path!=='/mv'">
-    <van-tabbar-item replace to="/" class="find">
-      <div><i class="iconfont">&#xe63b;</i></div>
-      <div>发现</div>
-    </van-tabbar-item>
-    <van-tabbar-item replace to="/mine" class="mine">
-      <div><i class="iconfont">&#xe60c;</i></div>
-      <div>我的</div>
-    </van-tabbar-item>
-  </van-tabbar>
 </template>
+
+<script lang="ts" setup>
+import {useRoute} from "vue-router";
+import {reactive} from "vue";
+import {storeApi} from "../store";
+
+const store = storeApi()
+const route = useRoute()
+</script>
 
 <style scoped lang="less">
 .iconfont {
   font-family: "iconfont" !important;
-  font-size: 35px;
+  font-size: 40px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
-.style{
-  margin-bottom: 200px;
-}
+
 .playEr {
   height: 90px;
   line-height: 90px;
   width: 750px;
   position: fixed;
-  background: #ffffff;
-  border-top: 1px solid #f5f2f0;
+  bottom: 0;
   left: 0;
   right: 0;
-  bottom: 7%;
   display: flex;
   justify-content: space-between;
+  background:#ffffff;
+  border-top: 1px solid #f5f2f0;
 
   .left {
     padding-left: 29px;
@@ -124,36 +103,4 @@ const route = useRoute()
     padding-right: 29px;
   }
 }
-
-.tabBar {
-  height: 90px;
-  text-align: center;
-
-  .find {
-    div:nth-child(1) {
-      i {
-        font-size: 50px;
-      }
-    }
-
-    div:nth-child(2) {
-      padding-top: 10px;
-      font-size: 25px;
-    }
-  }
-
-  .mine {
-    div:nth-child(1) {
-      i {
-        font-size: 50px;
-      }
-    }
-
-    div:nth-child(2) {
-      padding-top: 10px;
-      font-size: 25px;
-    }
-  }
-}
-
 </style>

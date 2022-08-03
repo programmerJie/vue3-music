@@ -4,7 +4,7 @@ import App from "./App.vue";
 import {createPinia} from "pinia";
 import router from "./router";
 //引入vant组件库
-import "./vant/index.ts";
+import '../src/vant/index'
 //引入字体文件
 import '../src/assets/font/index.css'
 

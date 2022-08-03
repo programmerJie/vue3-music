@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="video">
-    <video controls :src="mv.url"></video>
+    <video controls autoplay :src="mv.url"></video>
   </div>
   <div class="commentTitle">
     <div class="left">
@@ -86,7 +86,6 @@ onMounted(async () => {
   mv.url = res1.data.data.url
   mv.mvId = res1.data.data.id
   const res2 = await MvCommentApi(mv.id)
-  console.log(res2.data)
   mv.comments = res2.data.comments
   mv.hotComments = res2.data.hotComments
   mv.total = res2.data.total

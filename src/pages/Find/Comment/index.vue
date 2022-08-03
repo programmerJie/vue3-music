@@ -83,7 +83,6 @@ let ifShow = reactive({
 })
 onMounted(async () => {
   const res = await songlistCommentApi(comment.id)
-  console.log(res.data)
   comment.total = res.data.total
   comment.comments = res.data.comments
   comment.hotComments = res.data.hotComments
