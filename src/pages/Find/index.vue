@@ -10,9 +10,9 @@
     <div><i class="iconfont">&#xe7e8;</i></div>
   </div>
   <div class="bannar">
-    <van-swipe :autoplay="3000" lazy-render  style="border-radius: 9px">
+    <van-swipe :autoplay="3000" lazy-render  indicator-color="white" style="border-radius: 9px">
       <van-swipe-item v-for="item in banners.img" :key="item">
-        <img :src="item['pic']"  />
+        <img :src="item['pic']"/>
       </van-swipe-item>
     </van-swipe>
   </div>
@@ -103,11 +103,13 @@
 
 </template>
 <script setup lang="ts">
-import {ref, onMounted, onBeforeMount, reactive} from 'vue';
+import {ref, onMounted, reactive} from 'vue';
 import {BannerApi, recommendMusicApi, searchKwordsApi} from "../../api/Find";
 import {FindType} from "../../type/Find";
 import {useRouter} from "vue-router";
+import {storeData} from "../../store";
 
+const store = storeData()
 const router = useRouter()
 const show = ref(false);
 const banners = reactive({
@@ -128,8 +130,7 @@ onMounted(async () => {
   const b = await recommendMusicApi()
   recommendMusicList.data = b.data.result
   const c = await searchKwordsApi()
-  searchKwords.name = c.data.data.showKeyword
-})
+  searchKwords.name = c.data.data.showKeyword})
 //把数字单位转成文字单位
 const count = (data: number): string | number => {
   if (data >= 100000000) {
@@ -197,7 +198,6 @@ const ellipsis = (data: string): string => {
 .bannar {
   margin: 29px;
   height: 250px;
-
   img {
     width: 750px;
     height: 250px;

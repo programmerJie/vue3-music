@@ -124,6 +124,7 @@ onMounted(async () => {
   songListdetails.trackCount = res.data.playlist.trackCount
   const res2 = await songListApi(songListdetails.id)
   songList.music = res2.data.songs
+  console.log(songList.music)
 
 })
 //把播放次数的数字转换为汉字

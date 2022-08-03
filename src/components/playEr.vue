@@ -4,15 +4,16 @@
       <span>
         <van-image
             round
-            src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+            :src="store.music.al.picUrl"
             class="img"/>
       </span>
-      <span>再次爱上你-</span>
-      <span>阿里郎</span>
+      <span>{{store.music.al.name}}</span>
+      <span>-</span>
+      <span>{{store.music.ar[0].name}}</span>
     </div>
     <div class="right">
-      <span v-if="store.ifTrue" @click="store.btn1()"><i class="iconfont">&#xe624;</i></span>
-      <span v-if="store.ifFalse" @click="store.btn2()"><i class="iconfont">&#xe629;</i></span>
+      <span v-if="store.ifShow.ifTrue" @click="store.btn1()"><i class="iconfont">&#xe624;</i></span>
+      <span v-if="store.ifShow.ifFalse" @click="store.btn2()"><i class="iconfont">&#xe629;</i></span>
       <span><i class="iconfont">&#xe640;</i></span>
     </div>
   </div>
@@ -21,9 +22,9 @@
 <script lang="ts" setup>
 import {useRoute} from "vue-router";
 import {reactive} from "vue";
-import {storeApi} from "../store";
+import {storeData} from "../store";
 
-const store = storeApi()
+const store = storeData()
 const route = useRoute()
 </script>
 
@@ -47,7 +48,7 @@ const route = useRoute()
   right: 0;
   display: flex;
   justify-content: space-between;
-  background:#ffffff;
+  background: #ffffff;
   border-top: 1px solid #f5f2f0;
 
   .left {
@@ -59,22 +60,35 @@ const route = useRoute()
 
     span:nth-child(1) {
       background: #000;
+      height: 84px;
+      width: 84px;
+      border-radius: 42px;
+      display: inline-block;
+
       .img {
-        width: 90px;
-        height: 90px;
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        display: inline-block;
+        margin-left: 15%;
+        margin-top: 15%;
       }
     }
 
     span:nth-child(2) {
       display: inline-block;
-      margin-top: -30px;
       margin-left: 10px;
       font-size: 28px;
     }
 
     span:nth-child(3) {
       display: inline-block;
-      margin-top: -30px;
+      font-size: 25px;
+      margin: 0 5px;
+    }
+
+    span:nth-child(4) {
+      display: inline-block;
       font-size: 20px;
       color: #666666;
     }

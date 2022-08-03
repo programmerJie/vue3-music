@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import {useRoute} from "vue-router";
-import {reactive} from "vue";
-import {storeApi} from "./store";
+import {onMounted, reactive, ref} from "vue";
+import {storeData} from "./store";
+import {musicUrlApi} from "./api/SongList";
 
-const store = storeApi()
-
+const store = storeData()
 const route = useRoute()
-
+const audios: any = ref(null)
+onMounted(async () => {
+  const res = await musicUrlApi(store.music.id)
+  store.music.url = res.data.data[0].url
+})
 </script>
-
 <template>
   <router-view/>
-  <div class="style"></div>
+  <audio :src="store.music.url" controls v-show="true"></audio>
   <div class="playEr"
        v-if="route.path!=='/comment'
        &&route.path!=='/songList'&&route.path!=='/mv'">
@@ -19,15 +22,16 @@ const route = useRoute()
       <span>
         <van-image
             round
-            src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+            :src="store.music.al.picUrl"
             class="img"/>
       </span>
-      <span>再次爱上你-</span>
-      <span>阿里郎</span>
+      <span>{{ store.music.al.name }}</span>
+      <span>-</span>
+      <span>{{ store.music.ar[0].name }}</span>
     </div>
     <div class="right">
-      <span v-if="store.ifTrue" @click="store.btn1()"><i class="iconfont">&#xe624;</i></span>
-      <span v-if="store.ifFalse" @click="store.btn2()"><i class="iconfont">&#xe629;</i></span>
+      <span v-if="store.ifShow.ifTrue" @click="store.btn1()"><i class="iconfont">&#xe624;</i></span>
+      <span v-if="store.ifShow.ifFalse" @click="store.btn2()"><i class="iconfont">&#xe629;</i></span>
       <span><i class="iconfont">&#xe640;</i></span>
     </div>
   </div>
@@ -55,9 +59,7 @@ const route = useRoute()
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
-.style{
-  margin-bottom: 200px;
-}
+
 .playEr {
   height: 90px;
   line-height: 90px;
@@ -70,7 +72,6 @@ const route = useRoute()
   bottom: 7%;
   display: flex;
   justify-content: space-between;
-  background: red;
 
   .left {
     padding-left: 29px;
@@ -85,13 +86,14 @@ const route = useRoute()
       width: 84px;
       border-radius: 42px;
       display: inline-block;
+
       .img {
-        width: 50px;
-        height: 50px;
-        border-radius: 25px;
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
         display: inline-block;
-        padding-left: 17px;
-        padding-top: 17px;
+        margin-left: 15%;
+        margin-top: 15%;
       }
     }
 
@@ -102,6 +104,12 @@ const route = useRoute()
     }
 
     span:nth-child(3) {
+      display: inline-block;
+      font-size: 25px;
+      margin: 0 5px;
+    }
+
+    span:nth-child(4) {
       display: inline-block;
       font-size: 20px;
       color: #666666;

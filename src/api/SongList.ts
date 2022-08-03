@@ -13,3 +13,17 @@ export const songListApi = (data: number) => {
         method: 'GET'
     })
 }
+//获取音乐url
+export const musicUrlApi = (data: number) => {
+    return request({
+        url: `/song/url?id=${data}`,
+        method: 'GET'
+    })
+}
+//获取音乐是否可用
+export const musicIfUseApi = (data: number) => {
+    return request({
+        url: `/check/music?id=${data}`,
+        method: 'GET'
+    })
+}

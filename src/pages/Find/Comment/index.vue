@@ -166,7 +166,7 @@ const btn3 = () => {
     span:nth-child(1) {
       padding-right: 30px;
       font-weight: 500;
-      color:#666666;
+      color: #666666;
     }
 
     span:nth-child(3) {
@@ -182,12 +182,14 @@ const btn3 = () => {
       color: black !important;
       font-weight: 500;
     }
-    .style2{
-      color:black !important;
+
+    .style2 {
+      color: black !important;
       font-weight: 500;
     }
-    .style3{
-      color:black !important;
+
+    .style3 {
+      color: black !important;
       font-weight: 500;
     }
   }
