@@ -2,12 +2,15 @@
 import {useRoute} from "vue-router";
 import {onMounted, reactive, ref} from "vue";
 import {storeData} from "./store";
+import {musicIfUseApi} from "./api/SongList";
 
 const store = storeData();
 const route = useRoute();
 const yinyue = ref(null);
-onMounted(() => {
+onMounted(async () => {
   store.audio = yinyue;
+  const res = await musicIfUseApi(store.music.id)
+  console.log(res)
 });
 </script>
 <template>

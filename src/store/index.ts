@@ -90,7 +90,11 @@ export const storeData = defineStore("store", {
                 cp: 7002,
                 publishTime: 1510588800000,
             },
-            audio: {},
+            audio: {
+                autoplay: false,
+                play,
+                pause,
+            },
         };
     },
     actions: {
@@ -107,7 +111,7 @@ export const storeData = defineStore("store", {
         musicId(data: any) {
             this.music = data
             this.audio.autoplay = true
-            if (this.audio.autoplay === true) {
+            if (this.audio.autoplay) {
                 this.ifShow.ifTrue = false;
                 this.ifShow.ifFalse = true;
             } else {
