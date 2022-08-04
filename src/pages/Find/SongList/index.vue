@@ -64,7 +64,7 @@
     </div>
   </div>
   <div class="songListMusic" v-for="(item,index) in songList.music" :key="item">
-    <div class="left">
+    <div class="left" @click="store.musicId(item)">
       <span class="leftSpan">{{ index + 1 }}</span>
       <div class="leftDiv">
         <span>{{ result4(item.name) }}</span>
@@ -86,9 +86,12 @@ import {useRouter, useRoute} from "vue-router";
 import {onMounted, reactive} from "vue";
 import {songListDetailsApi, songListApi} from "../../../api/SongList";
 import PlayEr from "../../../components/playEr.vue";
+import {storeData} from "../../../store";
+import {musicUrlApi} from "../../../api/SongList";
 
 const router = useRouter()
 const route = useRoute()
+const store = storeData()
 const btn = () => {
   router.go(-1)
 }
@@ -124,7 +127,6 @@ onMounted(async () => {
   songListdetails.trackCount = res.data.playlist.trackCount
   const res2 = await songListApi(songListdetails.id)
   songList.music = res2.data.songs
-  console.log(songList.music)
 
 })
 //把播放次数的数字转换为汉字
@@ -185,7 +187,6 @@ const result5 = (data: string): string => {
     return data
   }
 }
-
 </script>
 
 <style scoped lang="less">
@@ -483,7 +484,8 @@ const result5 = (data: string): string => {
     }
   }
 }
-.style{
+
+.style {
   margin-bottom: 90px;
 }
 

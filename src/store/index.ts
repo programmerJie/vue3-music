@@ -1,25 +1,26 @@
 import {defineStore} from "pinia";
+import {onMounted} from "vue";
 
 export const storeData = defineStore("store", {
     state: () => {
         return {
             ifShow: {
                 ifTrue: true,
-                ifFalse: false
+                ifFalse: false,
             },
             music: {
                 name: "戒烟",
                 id: 518686034,
                 pst: 0,
                 t: 0,
-                url: '',
+                url: "",
                 ar: [
                     {
                         id: 4292,
                         name: "李荣浩",
                         tns: [],
-                        alias: []
-                    }
+                        alias: [],
+                    },
                 ],
                 alia: [],
                 pop: 100,
@@ -32,10 +33,11 @@ export const storeData = defineStore("store", {
                 al: {
                     id: 36796018,
                     name: "戒烟",
-                    picUrl: "https://p1.music.126.net/p8YbMNyWHOWz3t1ScDeoPw==/109951164476446746.jpg",
+                    picUrl:
+                        "https://p1.music.126.net/p8YbMNyWHOWz3t1ScDeoPw==/109951164476446746.jpg",
                     tns: [],
                     pic_str: "109951164476446746",
-                    pic: 109951164476446750
+                    pic: 109951164476446750,
                 },
                 dt: 293903,
                 h: {
@@ -43,21 +45,21 @@ export const storeData = defineStore("store", {
                     fid: 0,
                     size: 11757236,
                     vd: -44692,
-                    sr: 44100
+                    sr: 44100,
                 },
                 m: {
                     br: 192000,
                     fid: 0,
                     size: 7054359,
                     vd: -42116,
-                    sr: 44100
+                    sr: 44100,
                 },
                 l: {
                     br: 128000,
                     fid: 0,
                     size: 4702920,
                     vd: -40437,
-                    sr: 44100
+                    sr: 44100,
                 },
                 sq: null,
                 hr: null,
@@ -86,23 +88,32 @@ export const storeData = defineStore("store", {
                 mv: 5736067,
                 mst: 9,
                 cp: 7002,
-                publishTime: 1510588800000
+                publishTime: 1510588800000,
             },
-            audio: {
-                autoplay: false,
-                autofocus: false
-            }
+            audio: {},
         };
     },
     actions: {
         btn1() {
-            this.ifShow.ifTrue = false
-            this.ifShow.ifFalse = true
-            this.audio.autoplay = true
+            this.ifShow.ifTrue = false;
+            this.ifShow.ifFalse = true;
+            this.audio.play();
         },
         btn2() {
-            this.ifShow.ifTrue = true
-            this.ifShow.ifFalse = false
+            this.ifShow.ifTrue = true;
+            this.ifShow.ifFalse = false;
+            this.audio.pause();
+        },
+        musicId(data: any) {
+            this.music = data
+            this.audio.autoplay = true
+            if (this.audio.autoplay === true) {
+                this.ifShow.ifTrue = false;
+                this.ifShow.ifFalse = true;
+            } else {
+                this.ifShow.ifTrue = true;
+                this.ifShow.ifFalse = false;
+            }
         }
-    }
+    },
 });

@@ -2,43 +2,60 @@
 import {useRoute} from "vue-router";
 import {onMounted, reactive, ref} from "vue";
 import {storeData} from "./store";
-import {musicUrlApi} from "./api/SongList";
 
-const store = storeData()
-const route = useRoute()
-const audios: any = ref(null)
-onMounted(async () => {
-  const res = await musicUrlApi(store.music.id)
-  store.music.url = res.data.data[0].url
-})
+const store = storeData();
+const route = useRoute();
+const yinyue = ref(null);
+onMounted(() => {
+  store.audio = yinyue;
+});
 </script>
 <template>
   <router-view/>
-  <audio :src="store.music.url" controls v-show="true"></audio>
-  <div class="playEr"
-       v-if="route.path!=='/comment'
-       &&route.path!=='/songList'&&route.path!=='/mv'">
+  <audio :src="`api/song/media/outer/url?id=${store.music.id}.mp3`" controls ref="yinyue"
+         v-show="false"></audio>
+  <div
+      class="playEr"
+      v-if="
+      route.path !== '/comment' &&
+      route.path !== '/songList' &&
+      route.path !== '/mv'
+    "
+  >
     <div class="left">
       <span>
         <van-image
             round
             :src="store.music.al.picUrl"
-            class="img"/>
+            class="img"
+            :class="{ rotate: store.ifShow.ifFalse,paused:store.ifShow.ifTrue }"
+        />
       </span>
       <span>{{ store.music.al.name }}</span>
       <span>-</span>
       <span>{{ store.music.ar[0].name }}</span>
     </div>
     <div class="right">
-      <span v-if="store.ifShow.ifTrue" @click="store.btn1()"><i class="iconfont">&#xe624;</i></span>
-      <span v-if="store.ifShow.ifFalse" @click="store.btn2()"><i class="iconfont">&#xe629;</i></span>
+      <span v-if="store.ifShow.ifTrue" @click="store.btn1()"
+      ><i class="iconfont">&#xe624;</i></span
+      >
+      <span v-if="store.ifShow.ifFalse" @click="store.btn2()"
+      ><i class="iconfont">&#xe629;</i></span
+      >
       <span><i class="iconfont">&#xe640;</i></span>
     </div>
   </div>
-  <van-tabbar route :border="false" class="tabBar" active-color="red"
-              v-if="route.path!=='/songList'
-              &&route.path!=='/comment'
-              &&route.path!=='/mv'">
+  <van-tabbar
+      route
+      :border="false"
+      class="tabBar"
+      active-color="red"
+      v-if="
+      route.path !== '/songList' &&
+      route.path !== '/comment' &&
+      route.path !== '/mv'
+    "
+  >
     <van-tabbar-item replace to="/" class="find">
       <div><i class="iconfont">&#xe63b;</i></div>
       <div>发现</div>
@@ -75,6 +92,28 @@ onMounted(async () => {
 
   .left {
     padding-left: 29px;
+
+    span:nth-child(1) {
+      .rotate {
+        animation: rotate 18s linear 0s infinite;
+        @keyframes rotate {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      }
+
+      .play {
+        animation-play-state: running;
+      }
+
+      .paused {
+        animation-play-state: paused;
+      }
+    }
 
     span {
       vertical-align: middle;
@@ -113,6 +152,7 @@ onMounted(async () => {
       display: inline-block;
       font-size: 20px;
       color: #666666;
+      padding-top: 3px;
     }
   }
 
@@ -171,5 +211,4 @@ onMounted(async () => {
     }
   }
 }
-
 </style>
