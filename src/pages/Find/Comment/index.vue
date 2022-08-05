@@ -64,7 +64,7 @@
 
 <script lang="ts" setup>
 import {useRouter, useRoute} from "vue-router";
-import {songlistCommentApi} from "../../../api/Comment";
+import {songlistCommentApi} from "../../../api/Find/Comment";
 import {onMounted, reactive} from "vue";
 
 const router = useRouter()

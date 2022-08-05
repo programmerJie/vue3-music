@@ -1,6 +1,6 @@
 <template>
   <div class="backgroundImg">
-    <img :src="songListdetails.img" alt="">
+    <img :src="songListdetails.img" alt="" />
   </div>
   <div class="navBar">
     <div>
@@ -18,14 +18,14 @@
         <span><i class="iconfont">&#xe600;</i></span>
         <span>{{ count(songListdetails.palyCount) }}</span>
       </p>
-      <img :src="songListdetails.img" alt="">
+      <img :src="songListdetails.img" alt="" />
     </div>
     <div class="right">
       <p>
         <span>{{ result1(songListdetails.name) }} </span>
       </p>
       <p>
-        <span><img :src="songListdetails.userImg" alt=""></span>
+        <span><img :src="songListdetails.userImg" alt="" /></span>
         <span>{{ result2(songListdetails.nickName) }}</span>
         <span><i class="iconfont">&#xe625;</i></span>
       </p>
@@ -42,7 +42,9 @@
       <span>{{ subscribedCount(songListdetails.subscribedCount) }}</span>
     </div>
     <div>
-      <router-link :to="{path:'/comment',query:{id:songListdetails['id']}}">
+      <router-link
+        :to="{ path: '/comment', query: { id: songListdetails['id'] } }"
+      >
         <span><i class="iconfont">&#xe763;&nbsp;</i></span>
         <span>{{ songListdetails.commentCount }}</span>
       </router-link>
@@ -63,17 +65,21 @@
       <span><i class="iconfont">&#xe669;</i></span>
     </div>
   </div>
-  <div class="songListMusic" v-for="(item,index) in songList.music" :key="item">
+  <div
+    class="songListMusic"
+    v-for="(item, index) in songList.music"
+    :key="item"
+  >
     <div class="left" @click="store.musicId(item)">
       <span class="leftSpan">{{ index + 1 }}</span>
       <div class="leftDiv">
         <span>{{ result4(item.name) }}</span>
-        <span>{{ item['ar'][0].name }}-{{ result5(item['al'].name) }}</span>
+        <span>{{ item["ar"][0].name }}-{{ result5(item["al"].name) }}</span>
       </div>
     </div>
     <div class="right">
-      <router-link :to="{path:'/mv',query: {id:item['mv']}}">
-        <span v-if="item['mv']!==0"><i class="iconfont">&#xe665;</i></span>
+      <router-link :to="{ path: '/mv', query: { id: item['mv'] } }">
+        <span v-if="item['mv'] !== 0"><i class="iconfont">&#xe665;</i></span>
       </router-link>
       <span><i class="iconfont">&#xe8c4;</i></span>
     </div>
@@ -82,111 +88,110 @@
   <play-er></play-er>
 </template>
 <script lang="ts" setup>
-import {useRouter, useRoute} from "vue-router";
-import {onMounted, reactive} from "vue";
-import {songListDetailsApi, songListApi} from "../../../api/SongList";
+import { useRouter, useRoute } from "vue-router";
+import { onMounted, reactive } from "vue";
+import { songListDetailsApi, songListApi } from "../../../api/Find/SongList";
 import PlayEr from "../../../components/playEr.vue";
-import {storeData} from "../../../store";
-import {musicUrlApi} from "../../../api/SongList";
+import { storeData } from "../../../store";
+import { musicUrlApi } from "../../../api/Find/SongList";
 
-const router = useRouter()
-const route = useRoute()
-const store = storeData()
+const router = useRouter();
+const route = useRoute();
+const store = storeData();
 const btn = () => {
-  router.go(-1)
-}
+  router.go(-1);
+};
 let songListdetails: any = reactive({
   id: 0,
-  img: '',
+  img: "",
   palyCount: 0,
-  name: '',
-  userImg: '',
-  nickName: '',
-  description: '',
-  subscribedCount: '',
-  commentCount: '',
-  shareCount: '',
-  trackCount: ''
-})
+  name: "",
+  userImg: "",
+  nickName: "",
+  description: "",
+  subscribedCount: "",
+  commentCount: "",
+  shareCount: "",
+  trackCount: "",
+});
 let songList: any = reactive({
-  music: []
-})
+  music: [],
+});
 
 onMounted(async () => {
-  songListdetails.id = route.query.id
-  const res = await songListDetailsApi(songListdetails.id)
-  songListdetails.img = res.data.playlist.coverImgUrl
-  songListdetails.palyCount = res.data.playlist.playCount
-  songListdetails.name = res.data.playlist.name
-  songListdetails.userImg = res.data.playlist.creator.avatarUrl
-  songListdetails.nickName = res.data.playlist.creator.nickname
-  songListdetails.description = res.data.playlist.description
-  songListdetails.subscribedCount = res.data.playlist.subscribedCount
-  songListdetails.commentCount = res.data.playlist.commentCount
-  songListdetails.shareCount = res.data.playlist.shareCount
-  songListdetails.trackCount = res.data.playlist.trackCount
-  const res2 = await songListApi(songListdetails.id)
-  songList.music = res2.data.songs
-
-})
+  songListdetails.id = route.query.id;
+  const res = await songListDetailsApi(songListdetails.id);
+  songListdetails.img = res.data.playlist.coverImgUrl;
+  songListdetails.palyCount = res.data.playlist.playCount;
+  songListdetails.name = res.data.playlist.name;
+  songListdetails.userImg = res.data.playlist.creator.avatarUrl;
+  songListdetails.nickName = res.data.playlist.creator.nickname;
+  songListdetails.description = res.data.playlist.description;
+  songListdetails.subscribedCount = res.data.playlist.subscribedCount;
+  songListdetails.commentCount = res.data.playlist.commentCount;
+  songListdetails.shareCount = res.data.playlist.shareCount;
+  songListdetails.trackCount = res.data.playlist.trackCount;
+  const res2 = await songListApi(songListdetails.id);
+  songList.music = res2.data.songs;
+});
 //把播放次数的数字转换为汉字
 const count = (data: number): string | number => {
   if (data >= 100000000) {
-    return (data / 100000000).toFixed(1) + '亿'
+    return (data / 100000000).toFixed(1) + "亿";
   } else if (data >= 10000) {
-    return (data / 10000).toFixed(1) + '万'
+    return (data / 10000).toFixed(1) + "万";
   } else {
-    return data
+    return data;
   }
-}
+};
 //把订阅的人数的数字转换为汉字
 const subscribedCount = (data: number) => {
   if (data >= 100000) {
-    return (data / 10000).toFixed(1) + '万'
+    return (data / 10000).toFixed(1) + "万";
   } else {
-    return data
+    return data;
   }
-}
+};
 //判断歌单列表标题的长度,如果超过就省略
 const result1 = (data: string): string => {
   if (data.length >= 14) {
-    return data.slice(0, 14) + '...'
+    return data.slice(0, 14) + "...";
   } else {
-    return data
+    return data;
   }
-}
+};
 //判断歌单列表用户名字的字符长度,如果超过就省略
 const result2 = (data: string): string => {
   if (data.length >= 18) {
-    return data.slice(0, 18) + '...'
+    return data.slice(0, 18) + "...";
   } else {
-    return data
+    return data;
   }
-}
+};
 //判断歌单列表描述歌单的字符长度,如果超过就省略
 const result3 = (data: string): string => {
   if (data.length >= 16) {
-    return data.slice(0, 16) + '...'
+    return data.slice(0, 16) + "...";
   } else {
-    return data
+    return data;
   }
-}
+};
 //判断歌单列表列歌名的字符长度,如果超过就省略
 const result4 = (data: string): string => {
   if (data.length >= 16) {
-    return data.slice(0, 16) + '...'
+    return data.slice(0, 16) + "...";
   } else {
-    return data
+    return data;
   }
-}
+};
 //判断歌单列表里歌名的字符长度,如果超过就省略
 const result5 = (data: string): string => {
   if (data.length >= 12) {
-    return data.slice(0, 12) + '...'
+    return data.slice(0, 12) + "...";
   } else {
-    return data
+    return data;
   }
-}
+};
 </script>
 
 <style scoped lang="less">
@@ -200,7 +205,6 @@ const result5 = (data: string): string => {
 }
 
 .backgroundImg {
-
   img {
     width: 100%;
     height: 500px;
@@ -250,7 +254,7 @@ const result5 = (data: string): string => {
       span:nth-child(1) {
         i {
           font-size: 18px;
-          vert-align: middle;
+          vertical-align: middle;
         }
       }
     }
@@ -259,7 +263,6 @@ const result5 = (data: string): string => {
       width: 200px;
       height: 200px;
       border-radius: 20px;
-
     }
   }
 
@@ -269,7 +272,7 @@ const result5 = (data: string): string => {
     width: 460px;
 
     p:nth-child(1) {
-      color: white
+      color: white;
     }
 
     p:nth-child(2) {
@@ -488,5 +491,4 @@ const result5 = (data: string): string => {
 .style {
   margin-bottom: 90px;
 }
-
 </style>

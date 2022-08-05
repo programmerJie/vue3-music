@@ -2,17 +2,30 @@
   <div class="navbar">
     <div>
       <i class="iconfont" @click="showPopup">&#xe60c;</i>
-      <van-popup v-model:show="show" position="left" :style="{ width:'80%',height:'100%'}">
+      <van-popup
+        v-model:show="show"
+        position="left"
+        :style="{ width: '80%', height: '100%' }"
+      >
         目录
       </van-popup>
     </div>
-    <div><input type="search" :placeholder="searchKwords.name"/></div>
+    <div>
+      <router-link to="/search">
+        <input type="search" :placeholder="searchKwords.name" />
+      </router-link>
+    </div>
     <div><i class="iconfont">&#xe7e8;</i></div>
   </div>
   <div class="bannar">
-    <van-swipe :autoplay="3000" lazy-render  indicator-color="white" style="border-radius: 9px">
+    <van-swipe
+      :autoplay="3000"
+      lazy-render
+      indicator-color="white"
+      style="border-radius: 9px"
+    >
       <van-swipe-item v-for="item in banners.img" :key="item">
-        <img :src="item['pic']"/>
+        <img :src="item['pic']" />
       </van-swipe-item>
     </van-swipe>
   </div>
@@ -89,66 +102,77 @@
       </div>
     </div>
     <div class="recommendMusicContent">
-      <van-swipe :loop="false" :show-indicators="false" class="style" :width="120">
+      <van-swipe
+        :loop="false"
+        :show-indicators="false"
+        class="style"
+        :width="120"
+      >
         <van-swipe-item v-for="item in recommendMusicList.data" :key="item">
-          <router-link :to="{path:'/songList',query:{id:item['id']}}">
-            <p><span><i class="iconfont">&#xe600;</i></span><span>{{ count(item['playCount']) }}</span></p>
-            <img :src="item['picUrl']" alt="" style="width: 105px;">
-            <p>{{ ellipsis(item['name']) }}</p>
+          <router-link :to="{ path: '/songList', query: { id: item['id'] } }">
+            <p>
+              <span><i class="iconfont">&#xe600;</i></span
+              ><span>{{ count(item["playCount"]) }}</span>
+            </p>
+            <img :src="item['picUrl']" alt="" style="width: 105px" />
+            <p>{{ ellipsis(item["name"]) }}</p>
           </router-link>
         </van-swipe-item>
       </van-swipe>
     </div>
   </div>
-
 </template>
 <script setup lang="ts">
-import {ref, onMounted, reactive} from 'vue';
-import {BannerApi, recommendMusicApi, searchKwordsApi} from "../../api/Find";
-import {FindType} from "../../type/Find";
-import {useRouter} from "vue-router";
-import {storeData} from "../../store";
+import { ref, onMounted, reactive } from "vue";
+import {
+  BannerApi,
+  recommendMusicApi,
+  searchKwordsApi,
+} from "../../api/Find/Find";
+import { useRouter } from "vue-router";
+import { storeData } from "../../store";
 
-const store = storeData()
-const router = useRouter()
+const store = storeData();
+const router = useRouter();
 const show = ref(false);
 const banners = reactive({
   img: [],
-})
+});
 const recommendMusicList = reactive({
-  data: []
-})
+  data: [],
+});
 const searchKwords = reactive({
-  name: ''
-})
-const showPopup = (): void => {
+  name: "",
+});
+const showPopup = () => {
   show.value = true;
 };
 onMounted(async () => {
-  const a = await BannerApi()
-  banners.img = a.data.banners
-  const b = await recommendMusicApi()
-  recommendMusicList.data = b.data.result
-  const c = await searchKwordsApi()
-  searchKwords.name = c.data.data.showKeyword})
+  const a = await BannerApi();
+  banners.img = a.data.banners;
+  const b = await recommendMusicApi();
+  recommendMusicList.data = b.data.result;
+  const c = await searchKwordsApi();
+  searchKwords.name = c.data.data.showKeyword;
+});
 //把数字单位转成文字单位
 const count = (data: number): string | number => {
   if (data >= 100000000) {
-    return (data / 100000000).toFixed(1) + '亿'
+    return (data / 100000000).toFixed(1) + "亿";
   } else if (data >= 100000) {
-    return (data / 10000).toFixed(1) + '万'
+    return (data / 10000).toFixed(1) + "万";
   } else {
-    return data
+    return data;
   }
-}
+};
 //判断歌单列表描述歌单的字符长度,如果超过就省略
 const ellipsis = (data: string): string => {
   if (data.length >= 9) {
-    return data.slice(0, 9) + '...'
+    return data.slice(0, 9) + "...";
   } else {
-    return data
+    return data;
   }
-}
+};
 </script>
 
 <style scoped lang="less">
@@ -185,6 +209,7 @@ const ellipsis = (data: string): string => {
       background: #f5f2f0;
       text-align: center;
       font-size: 25px;
+      display: block;
     }
   }
 
@@ -198,6 +223,7 @@ const ellipsis = (data: string): string => {
 .bannar {
   margin: 29px;
   height: 250px;
+
   img {
     width: 750px;
     height: 250px;
@@ -271,7 +297,6 @@ const ellipsis = (data: string): string => {
       filter: blur(0.8);
 
       span:nth-child(1) {
-
         i {
           font-size: 20px;
           vertical-align: middle;
