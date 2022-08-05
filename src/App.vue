@@ -9,9 +9,7 @@ const route = useRoute();
 const yinyue = ref(null);
 onMounted(async () => {
   store.audio = yinyue;
-  console.log(yinyue);
   const res = await musicIfUseApi(store.music.id);
-  console.log(res);
 });
 </script>
 <template>
