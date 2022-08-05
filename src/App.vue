@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useRoute } from "vue-router";
-import { onMounted, reactive, ref } from "vue";
-import { storeData } from "./store";
-import { musicIfUseApi } from "./api/Find/SongList";
+import {useRoute} from "vue-router";
+import {onMounted, reactive, ref} from "vue";
+import {storeData} from "./store";
+import {musicIfUseApi} from "./api/Find/SongList";
 
 const store = storeData();
 const route = useRoute();
@@ -13,16 +13,16 @@ onMounted(async () => {
 });
 </script>
 <template>
-  <router-view />
+  <router-view/>
   <audio
-    :src="`api/song/media/outer/url?id=${store.music.id}.mp3`"
-    controls
-    ref="yinyue"
-    v-show="false"
+      :src="`https://music.163.com/song/media/outer/url?id=${store.music.id}.mp3`"
+      controls
+      ref="yinyue"
+      v-show="false"
   ></audio>
   <div
-    class="playEr"
-    v-if="
+      class="playEr"
+      v-if="
       route.path !== '/comment' &&
       route.path !== '/songList' &&
       route.path !== '/mv' &&
@@ -32,10 +32,10 @@ onMounted(async () => {
     <div class="left">
       <span>
         <van-image
-          round
-          :src="store.music.al.picUrl"
-          class="img"
-          :class="{ rotate: store.ifShow.ifFalse, paused: store.ifShow.ifTrue }"
+            round
+            :src="store.music.al.picUrl"
+            class="img"
+            :class="{ rotate: store.ifShow.ifFalse, paused: store.ifShow.ifTrue }"
         />
       </span>
       <span>{{ store.music.al.name }}</span>
@@ -44,20 +44,20 @@ onMounted(async () => {
     </div>
     <div class="right">
       <span v-if="store.ifShow.ifTrue" @click="store.btn1()"
-        ><i class="iconfont">&#xe624;</i></span
+      ><i class="iconfont">&#xe624;</i></span
       >
       <span v-if="store.ifShow.ifFalse" @click="store.btn2()"
-        ><i class="iconfont">&#xe629;</i></span
+      ><i class="iconfont">&#xe629;</i></span
       >
       <span><i class="iconfont">&#xe640;</i></span>
     </div>
   </div>
   <van-tabbar
-    route
-    :border="false"
-    class="tabBar"
-    active-color="red"
-    v-if="
+      route
+      :border="false"
+      class="tabBar"
+      active-color="red"
+      v-if="
       route.path !== '/songList' &&
       route.path !== '/comment' &&
       route.path !== '/mv' &&
