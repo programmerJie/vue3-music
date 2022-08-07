@@ -1,4 +1,4 @@
-<template>我的</template>
+<template></template>
 
 <script setup lang="ts"></script>
 

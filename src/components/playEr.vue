@@ -29,11 +29,9 @@
 import { useRoute } from "vue-router";
 import { reactive } from "vue";
 import { storeData } from "../store";
-
 const store = storeData();
 const route = useRoute();
 </script>
-
 <style scoped lang="less">
 .iconfont {
   font-family: "iconfont" !important;

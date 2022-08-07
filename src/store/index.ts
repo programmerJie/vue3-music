@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { onMounted } from "vue";
 
 export const storeData = defineStore("store", {
   state: () => {

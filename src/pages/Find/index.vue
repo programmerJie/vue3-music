@@ -10,9 +10,12 @@
         目录
       </van-popup>
     </div>
-    <div>
+    <div class="search">
       <router-link to="/search">
-        <input type="search" :placeholder="searchKwords.name" />
+        <div>
+          <span><i class="iconfont">&#xe622;</i></span>
+          <span>{{searchKwords.name}}</span>
+        </div>
       </router-link>
     </div>
     <div><i class="iconfont">&#xe7e8;</i></div>
@@ -131,7 +134,6 @@ import {
 } from "../../api/Find/Find";
 import { useRouter } from "vue-router";
 import { storeData } from "../../store";
-
 const store = storeData();
 const router = useRouter();
 const show = ref(false);
@@ -153,7 +155,7 @@ onMounted(async () => {
   const b = await recommendMusicApi();
   recommendMusicList.data = b.data.result;
   const c = await searchKwordsApi();
-  searchKwords.name = c.data.data.showKeyword;
+  searchKwords.name = c.data.data.realkeyword;
 });
 //把数字单位转成文字单位
 const count = (data: number): string | number => {
@@ -199,17 +201,24 @@ const ellipsis = (data: string): string => {
     }
   }
 
-  div:nth-child(2) {
-    input {
-      width: 580px;
-      outline: none;
-      height: 70px;
+  .search {
+    div{
       border-radius: 35px;
-      border: none;
+      width: 580px;
+      height: 70px;
       background: #f5f2f0;
       text-align: center;
-      font-size: 25px;
-      display: block;
+      span:nth-child(1){
+        i{
+          color:black;
+          vertical-align: middle;
+          margin-right: 5px;
+          font-size: 30px;
+        }
+      }
+      span:nth-child(2){
+        color:black;
+      }
     }
   }
 

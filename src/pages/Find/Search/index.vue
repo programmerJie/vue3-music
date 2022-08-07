@@ -3,7 +3,7 @@
     <div>
       <i class="iconfont" @click="btn()">&#xe697;</i>
     </div>
-    <div><input type="search" placeholder="hello" v-model="song" /></div>
+    <div><input type="text" placeholder="hello" v-model="song"/></div>
     <div @click="search">搜索</div>
   </div>
   <play-er></play-er>
@@ -11,21 +11,19 @@
 
 <script lang="ts" setup>
 import PlayEr from "../../../components/playEr.vue";
-import { useRouter } from "vue-router";
-import { useRoute } from "vue-router";
-import { searchApi } from "../../../api/Find/Search";
-import { ref } from "vue";
-
+import {useRouter} from "vue-router";
+import {useRoute} from "vue-router";
+import {searchApi} from "../../../api/Find/Search";
+import {reactive, ref} from "vue";
 const route = useRoute();
 const router = useRouter();
-const song = "";
 const btn = () => {
   router.go(-1);
 };
-
+const song = ''
 const search = async () => {
-  const hello = song;
-  const res = await searchApi(hello);
+  const res = await searchApi(song);
+  console.log(res)
 };
 </script>
 
@@ -65,6 +63,7 @@ const search = async () => {
       display: block;
     }
   }
+
   div:nth-child(3) {
     font-size: 28px;
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="backgroundImg">
-    <img :src="songListdetails.img" alt="" />
+    <img :src="songListdetails.img" alt=""/>
   </div>
   <div class="navBar">
     <div>
@@ -18,14 +18,14 @@
         <span><i class="iconfont">&#xe600;</i></span>
         <span>{{ count(songListdetails.palyCount) }}</span>
       </p>
-      <img :src="songListdetails.img" alt="" />
+      <img :src="songListdetails.img" alt=""/>
     </div>
     <div class="right">
       <p>
         <span>{{ result1(songListdetails.name) }} </span>
       </p>
       <p>
-        <span><img :src="songListdetails.userImg" alt="" /></span>
+        <span><img :src="songListdetails.userImg" alt=""/></span>
         <span>{{ result2(songListdetails.nickName) }}</span>
         <span><i class="iconfont">&#xe625;</i></span>
       </p>
@@ -43,7 +43,7 @@
     </div>
     <div>
       <router-link
-        :to="{ path: '/comment', query: { id: songListdetails['id'] } }"
+          :to="{ path: '/comment', query: { id: songListdetails['id'] } }"
       >
         <span><i class="iconfont">&#xe763;&nbsp;</i></span>
         <span>{{ songListdetails.commentCount }}</span>
@@ -66,9 +66,9 @@
     </div>
   </div>
   <div
-    class="songListMusic"
-    v-for="(item, index) in songList.music"
-    :key="item"
+      class="songListMusic"
+      v-for="(item, index) in songList.music"
+      :key="item"
   >
     <div class="left" @click="store.musicId(item)">
       <span class="leftSpan">{{ index + 1 }}</span>
@@ -88,12 +88,12 @@
   <play-er></play-er>
 </template>
 <script lang="ts" setup>
-import { useRouter, useRoute } from "vue-router";
-import { onMounted, reactive } from "vue";
-import { songListDetailsApi, songListApi } from "../../../api/Find/SongList";
+import {useRouter, useRoute} from "vue-router";
+import {onMounted, reactive} from "vue";
+import {songListDetailsApi, songListApi} from "../../../api/Find/SongList";
 import PlayEr from "../../../components/playEr.vue";
-import { storeData } from "../../../store";
-import { musicUrlApi } from "../../../api/Find/SongList";
+import {storeData} from "../../../store";
+import {musicUrlApi} from "../../../api/Find/SongList";
 
 const router = useRouter();
 const route = useRoute();
