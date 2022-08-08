@@ -14,18 +14,28 @@
   </div>
   <div class="content">
     <div class="left">
-      <p>
+      <p v-if="songListdetails.img!==''">
         <span><i class="iconfont">&#xe600;</i></span>
         <span>{{ count(songListdetails.palyCount) }}</span>
       </p>
-      <img :src="songListdetails.img" alt=""/>
+      <van-image :src="songListdetails.img" lazy-load radius="9px" class="img">
+        <template v-slot:loading>
+          <van-loading/>
+        </template>
+      </van-image>
     </div>
     <div class="right">
       <p>
         <span>{{ result1(songListdetails.name) }} </span>
       </p>
       <p>
-        <span><img :src="songListdetails.userImg" alt=""/></span>
+        <span>
+          <van-image :src="songListdetails.userImg" lazy-load radius="50%" class="img">
+        <template v-slot:loading>
+            <van-loading/>
+        </template>
+          </van-image>
+        </span>
         <span>{{ result2(songListdetails.nickName) }}</span>
         <span><i class="iconfont">&#xe625;</i></span>
       </p>
@@ -70,7 +80,7 @@
       v-for="(item, index) in songList.music"
       :key="item"
   >
-    <div class="left" @click="store.musicId(item)">
+    <div class="left" @click="store.musicId(item)" >
       <span class="leftSpan">{{ index + 1 }}</span>
       <div class="leftDiv">
         <span>{{ result4(item.name) }}</span>
@@ -89,7 +99,7 @@
 </template>
 <script lang="ts" setup>
 import {useRouter, useRoute} from "vue-router";
-import {onMounted, reactive} from "vue";
+import {onMounted, reactive, computed} from "vue";
 import {songListDetailsApi, songListApi} from "../../../api/Find/SongList";
 import PlayEr from "../../../components/playEr.vue";
 import {storeData} from "../../../store";
@@ -247,19 +257,17 @@ const result5 = (data: string): string => {
       right: 4%;
       font-size: 20px;
       top: 2%;
-      border: 1px solid gray;
       border-radius: 15px;
-      background: #666666;
+      background: rgba(0, 0, 0, 0.3);
 
       span:nth-child(1) {
         i {
           font-size: 18px;
-          vertical-align: middle;
         }
       }
     }
 
-    img {
+    .img {
       width: 200px;
       height: 200px;
       border-radius: 20px;
@@ -279,7 +287,7 @@ const result5 = (data: string): string => {
       padding-top: 35px;
 
       span:nth-child(1) {
-        img {
+        .img {
           width: 50px;
           height: 50px;
           border-radius: 50%;

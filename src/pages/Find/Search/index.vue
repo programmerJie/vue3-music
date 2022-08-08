@@ -22,7 +22,7 @@ const btn = () => {
 };
 const song = ''
 const search = async () => {
-  const res = await searchApi(song);
+  const res = await searchApi('就是爱上你');
   console.log(res)
 };
 </script>

@@ -3,9 +3,9 @@
     <div>
       <i class="iconfont" @click="showPopup">&#xe60c;</i>
       <van-popup
-        v-model:show="show"
-        position="left"
-        :style="{ width: '80%', height: '100%' }"
+          v-model:show="show"
+          position="left"
+          :style="{ width: '80%', height: '100%' }"
       >
         目录
       </van-popup>
@@ -14,7 +14,7 @@
       <router-link to="/search">
         <div>
           <span><i class="iconfont">&#xe622;</i></span>
-          <span>{{searchKwords.name}}</span>
+          <span>{{ searchKwords.name }}</span>
         </div>
       </router-link>
     </div>
@@ -22,13 +22,17 @@
   </div>
   <div class="bannar">
     <van-swipe
-      :autoplay="3000"
-      lazy-render
-      indicator-color="white"
-      style="border-radius: 9px"
+        :autoplay="3000"
+        lazy-render
+        indicator-color="white"
+        :show-indicators="false"
+        style="border-radius: 9px"
     >
+      <template #indicator="{ active, total }">
+        <div class="custom-indicator">{{ active + 1 }}/{{ total }}</div>
+      </template>
       <van-swipe-item v-for="item in banners.img" :key="item">
-        <img :src="item['pic']" />
+        <img :src="item['pic']"/>
       </van-swipe-item>
     </van-swipe>
   </div>
@@ -106,10 +110,10 @@
     </div>
     <div class="recommendMusicContent">
       <van-swipe
-        :loop="false"
-        :show-indicators="false"
-        class="style"
-        :width="120"
+          :loop="false"
+          :show-indicators="false"
+          class="style"
+          :width="120"
       >
         <van-swipe-item v-for="item in recommendMusicList.data" :key="item">
           <router-link :to="{ path: '/songList', query: { id: item['id'] } }">
@@ -117,7 +121,11 @@
               <span><i class="iconfont">&#xe600;</i></span
               ><span>{{ count(item["playCount"]) }}</span>
             </p>
-            <img :src="item['picUrl']" alt="" style="width: 105px" />
+            <van-image :src="item['picUrl']" radius="10" style="width: 105px" lazy-load>
+              <template v-slot:loading>
+                <van-loading />
+              </template>
+            </van-image>
             <p>{{ ellipsis(item["name"]) }}</p>
           </router-link>
         </van-swipe-item>
@@ -126,14 +134,15 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, reactive } from "vue";
+import {ref, onMounted, reactive} from "vue";
 import {
   BannerApi,
   recommendMusicApi,
   searchKwordsApi,
 } from "../../api/Find/Find";
-import { useRouter } from "vue-router";
-import { storeData } from "../../store";
+import {useRouter} from "vue-router";
+import {storeData} from "../../store";
+
 const store = storeData();
 const router = useRouter();
 const show = ref(false);
@@ -202,22 +211,24 @@ const ellipsis = (data: string): string => {
   }
 
   .search {
-    div{
+    div {
       border-radius: 35px;
       width: 580px;
       height: 70px;
       background: #f5f2f0;
       text-align: center;
-      span:nth-child(1){
-        i{
-          color:black;
+
+      span:nth-child(1) {
+        i {
+          color: black;
           vertical-align: middle;
           margin-right: 5px;
           font-size: 30px;
         }
       }
-      span:nth-child(2){
-        color:black;
+
+      span:nth-child(2) {
+        color: black;
       }
     }
   }
@@ -232,7 +243,15 @@ const ellipsis = (data: string): string => {
 .bannar {
   margin: 29px;
   height: 250px;
-
+  .custom-indicator {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    padding: 2px 5px;
+    font-size: 12px;
+    background: rgba(0, 0, 0, 0.1);
+    color:white;
+  }
   img {
     width: 750px;
     height: 250px;
@@ -298,11 +317,10 @@ const ellipsis = (data: string): string => {
       color: white;
       z-index: 99;
       top: -4%;
-      border: 1px solid gray;
       box-shadow: gray;
       margin-top: 18px;
       border-radius: 15px;
-      background: #666666;
+      background: rgba(0,0,0,0.3);
       filter: blur(0.8);
 
       span:nth-child(1) {
@@ -326,7 +344,7 @@ const ellipsis = (data: string): string => {
       color: black;
     }
 
-    img {
+    .img {
       border-radius: 20px;
     }
   }
