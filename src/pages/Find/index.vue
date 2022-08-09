@@ -28,9 +28,6 @@
         :show-indicators="false"
         style="border-radius: 9px"
     >
-      <template #indicator="{ active, total }">
-        <div class="custom-indicator">{{ active + 1 }}/{{ total }}</div>
-      </template>
       <van-swipe-item v-for="item in banners.img" :key="item">
         <img :src="item['pic']"/>
       </van-swipe-item>
@@ -123,7 +120,7 @@
             </p>
             <van-image :src="item['picUrl']" radius="10" style="width: 105px" lazy-load>
               <template v-slot:loading>
-                <van-loading />
+                <van-loading/>
               </template>
             </van-image>
             <p>{{ ellipsis(item["name"]) }}</p>
@@ -131,6 +128,18 @@
         </van-swipe-item>
       </van-swipe>
     </div>
+  </div>
+  <div class="recommendNewMusicTitle">
+    <div>
+      <span><i class="iconfont">&#xec08;</i></span>
+      <span>推荐歌曲</span>
+    </div>
+    <div>
+      <span><i class="iconfont">&#xe62b;</i></span>
+      <span>播放</span>
+    </div>
+  </div>
+  <div class="recommendNewMusicContent">
   </div>
 </template>
 <script setup lang="ts">
@@ -142,7 +151,12 @@ import {
 } from "../../api/Find/Find";
 import {useRouter} from "vue-router";
 import {storeData} from "../../store";
+import {recommendNewMusicApi} from "../../api/Find/Find";
 
+const images = [
+  'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
+  'https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
+];
 const store = storeData();
 const router = useRouter();
 const show = ref(false);
@@ -158,6 +172,9 @@ const searchKwords = reactive({
 const showPopup = () => {
   show.value = true;
 };
+let recommendNewMusic: any = reactive({
+  music: []
+})
 onMounted(async () => {
   const a = await BannerApi();
   banners.img = a.data.banners;
@@ -165,6 +182,9 @@ onMounted(async () => {
   recommendMusicList.data = b.data.result;
   const c = await searchKwordsApi();
   searchKwords.name = c.data.data.realkeyword;
+  const d = await recommendNewMusicApi()
+  console.log(d.data.result)
+  recommendNewMusic.music = d.data.result
 });
 //把数字单位转成文字单位
 const count = (data: number): string | number => {
@@ -220,7 +240,7 @@ const ellipsis = (data: string): string => {
 
       span:nth-child(1) {
         i {
-          color: black;
+          color: #666666;
           vertical-align: middle;
           margin-right: 5px;
           font-size: 30px;
@@ -228,7 +248,8 @@ const ellipsis = (data: string): string => {
       }
 
       span:nth-child(2) {
-        color: black;
+        color: #666666;
+        font-size: 30px;
       }
     }
   }
@@ -243,15 +264,7 @@ const ellipsis = (data: string): string => {
 .bannar {
   margin: 29px;
   height: 250px;
-  .custom-indicator {
-    position: absolute;
-    right: 5px;
-    bottom: 5px;
-    padding: 2px 5px;
-    font-size: 12px;
-    background: rgba(0, 0, 0, 0.1);
-    color:white;
-  }
+
   img {
     width: 750px;
     height: 250px;
@@ -320,7 +333,7 @@ const ellipsis = (data: string): string => {
       box-shadow: gray;
       margin-top: 18px;
       border-radius: 15px;
-      background: rgba(0,0,0,0.3);
+      background: rgba(0, 0, 0, 0.3);
       filter: blur(0.8);
 
       span:nth-child(1) {
@@ -348,5 +361,43 @@ const ellipsis = (data: string): string => {
       border-radius: 20px;
     }
   }
+}
+
+.recommendNewMusicTitle {
+  display: flex;
+  margin: 29px;
+  //background: red;
+  height: 50px;
+  justify-content: space-between;
+
+  div:nth-child(1) {
+    span:nth-child(1) {
+      margin-right: 10px;
+
+      i {
+        font-size: 35px;
+        display: inline-block;
+        margin-top: 5px;
+      }
+    }
+  }
+
+  div:nth-child(2) {
+    border: 1px solid #666666;
+    border-radius: 20px;
+    width: 110px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 25px;
+
+    span:nth-child(1) {
+      display: inline-block;
+      margin-right: 4px;
+    }
+  }
+}
+.recommendNewMusicContent{
+  margin: 0 29px;
 }
 </style>

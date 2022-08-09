@@ -80,7 +80,7 @@
       v-for="(item, index) in songList.music"
       :key="item"
   >
-    <div class="left" @click="store.musicId(item)" >
+    <div class="left" @click="store.musicId(item)">
       <span class="leftSpan">{{ index + 1 }}</span>
       <div class="leftDiv">
         <span>{{ result4(item.name) }}</span>
@@ -127,7 +127,6 @@ let songListdetails: any = reactive({
 let songList: any = reactive({
   music: [],
 });
-
 onMounted(async () => {
   songListdetails.id = route.query.id;
   const res = await songListDetailsApi(songListdetails.id);
@@ -179,11 +178,13 @@ const result2 = (data: string): string => {
   }
 };
 //判断歌单列表描述歌单的字符长度,如果超过就省略
-const result3 = (data: string): string => {
+const result3 = (data: string) => {
   if (data.length >= 16) {
     return data.slice(0, 16) + "...";
+  } else if (data.length === 0) {
+    return data + '没有设置签名'
   } else {
-    return data;
+    return data
   }
 };
 //判断歌单列表列歌名的字符长度,如果超过就省略
