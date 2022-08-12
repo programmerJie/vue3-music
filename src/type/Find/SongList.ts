@@ -5,7 +5,7 @@ export interface SongListDetailsType {
     userImg: string,
     nickName: string
     description: string,
-    subscribedCount: string|number,
+    subscribedCount: any,
     commentCount: string|number,
     shareCount: number|string,
     trackCount: number|string
