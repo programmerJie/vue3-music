@@ -4,14 +4,12 @@
       <i class="iconfont" @click="btn">&#xe697;</i>
     </div>
     <div>
-    <div><i class="iconfont">&#xe622;</i></div>
-    <div>
-      <input @click="store.search===null" type="text" :placeholder="store.search" v-model="song"
-             style="color:#666666">
+      <div><i class="iconfont">&#xe622;</i></div>
+      <div>
+        <input @click="store.search==null" type="text" :placeholder="store.search" v-model="song"
+               style="color:#666666">
+      </div>
     </div>
-    </div>
-    ! [rejected]        master -> master (fetch first)
-    error: failed to push some refs to 'github.com:programmerJie/vue3-music.git'
 
     <div @click="search(song)">搜索</div>
   </div>
@@ -69,7 +67,8 @@ const search = async (data: any) => {
       font-size: 40px;
     }
   }
-  div:nth-child(2){
+
+  div:nth-child(2) {
     display: flex;
 
     div:nth-child(1) {
@@ -79,9 +78,10 @@ const search = async (data: any) => {
       border-top-left-radius: 35px;
       border-bottom-left-radius: 35px;
       text-align: center;
-      i{
+
+      i {
         font-size: 30px;
-        color:#666666;
+        color: #666666;
         vertical-align: middle;
       }
     }
