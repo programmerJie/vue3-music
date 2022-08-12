@@ -2,12 +2,15 @@
   <div class="playEr">
     <div class="left">
       <span>
-        <van-image
-          round
-          :src="store.music.al.picUrl"
-          class="img"
-          :class="{ rotate: store.ifShow.ifFalse }"
-        />
+        <van-image :src="store.music.al.picUrl"
+                   round
+                   lazy-load
+                   class="img"
+                   :class="{ rotate: store.ifShow.ifFalse }">
+      <template v-slot:loading>
+          <van-loading/>
+        </template>
+</van-image>
       </span>
       <span>{{ store.music.al.name }}</span>
       <span>-</span>
@@ -15,10 +18,10 @@
     </div>
     <div class="right">
       <span v-if="store.ifShow.ifTrue" @click="store.btn1()"
-        ><i class="iconfont">&#xe624;</i></span
+      ><i class="iconfont">&#xe624;</i></span
       >
       <span v-if="store.ifShow.ifFalse" @click="store.btn2()"
-        ><i class="iconfont">&#xe629;</i></span
+      ><i class="iconfont">&#xe629;</i></span
       >
       <span><i class="iconfont">&#xe640;</i></span>
     </div>
@@ -26,9 +29,10 @@
 </template>
 
 <script lang="ts" setup>
-import { useRoute } from "vue-router";
-import { reactive } from "vue";
-import { storeData } from "../store";
+import {useRoute} from "vue-router";
+import {reactive} from "vue";
+import {storeData} from "../store";
+
 const store = storeData();
 const route = useRoute();
 </script>
@@ -57,6 +61,7 @@ const route = useRoute();
 
   .left {
     padding-left: 29px;
+
     span:nth-child(1) {
       .rotate {
         animation: rotate 18s linear 0s infinite forwards;
@@ -70,6 +75,7 @@ const route = useRoute();
         }
       }
     }
+
     span {
       vertical-align: middle;
     }

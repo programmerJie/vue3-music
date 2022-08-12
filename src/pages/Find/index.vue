@@ -26,10 +26,14 @@
         lazy-render
         indicator-color="white"
         :show-indicators="false"
-        style="border-radius: 9px"
+        style="border-radius: 9px;height: 100%"
     >
       <van-swipe-item v-for="item in banners.data" :key="item">
-        <img :src="item['pic']"/>
+        <van-image :src="item['pic']" lazy-load>
+          <template v-slot:loading>
+            <van-loading/>
+          </template>
+        </van-image>
       </van-swipe-item>
     </van-swipe>
   </div>
@@ -273,11 +277,6 @@ const ellipsis = (data: string): string => {
 .bannar {
   margin: 29px;
   height: 250px;
-
-  img {
-    width: 750px;
-    height: 250px;
-  }
 }
 
 .tabBar {
@@ -293,7 +292,7 @@ const ellipsis = (data: string): string => {
         height: 90px;
         line-height: 90px;
         border-radius: 45px;
-        background: #fce3ea;
+        background: #ffeef2;
         display: inline-block;
       }
     }
