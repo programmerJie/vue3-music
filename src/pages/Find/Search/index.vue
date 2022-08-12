@@ -10,6 +10,9 @@
              style="color:#666666">
     </div>
     </div>
+    ! [rejected]        master -> master (fetch first)
+    error: failed to push some refs to 'github.com:programmerJie/vue3-music.git'
+
     <div @click="search(song)">搜索</div>
   </div>
   <play-er></play-er>
