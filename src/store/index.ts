@@ -90,7 +90,7 @@ export const storeData = defineStore("store", {
                 publishTime: 1510588800000,
             },
             audio: {},
-            search: null
+            search: ''
         };
     },
     actions: {

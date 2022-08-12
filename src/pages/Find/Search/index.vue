@@ -6,7 +6,7 @@
     <div>
       <div><i class="iconfont">&#xe622;</i></div>
       <div>
-        <input @click="hello" type="text" :placeholder="store.search" v-model="song"
+        <input @click="store.search=''" type="text" :placeholder="store.search" v-model="song"
                style="color:#666666">
       </div>
     </div>
@@ -33,16 +33,13 @@ const btn = () => {
 };
 const search = async (data: any) => {
   //如果值为空就用pinia默认的搜索关键字,否则就是用户输入的搜索关键字
-  if (data === null) {
+  if (data === '') {
     const res = await searchApi(store.search as any);
     console.log(res);
   } else {
     const res = await searchApi(data);
     console.log(res);
   }
-}
-const hello = () => {
-  store.search = null
 }
 </script>
 
