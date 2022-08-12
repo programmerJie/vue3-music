@@ -6,13 +6,17 @@
     <div>
       <div><i class="iconfont">&#xe622;</i></div>
       <div>
-        <input @click="store.search=''" type="text" :placeholder="store.search" v-model="song"
+        <input type="search" :placeholder="store.search" v-model="song"
                style="color:#666666">
       </div>
     </div>
-
     <div @click="search(song)">搜索</div>
   </div>
+  <div class="delete">
+    <div>历史</div>
+    <div @click=""><i class="iconfont">&#xe8b6;</i></div>
+  </div>
+
   <play-er></play-er>
 </template>
 
@@ -23,7 +27,6 @@ import {useRoute} from "vue-router";
 import {searchApi} from "../../../api/Find/Search";
 import {reactive, ref, watch} from "vue";
 import {storeData} from "../../../store";
-
 const store = storeData();
 let song = '';
 const route = useRoute();
@@ -31,6 +34,7 @@ const router = useRouter();
 const btn = () => {
   router.go(-1);
 };
+
 const search = async (data: any) => {
   //如果值为空就用pinia默认的搜索关键字,否则就是用户输入的搜索关键字
   if (data === '') {
@@ -74,6 +78,7 @@ const search = async (data: any) => {
       background: #f5f2f0;
       height: 70px;
       width: 80px;
+      line-height: 70px;
       border-top-left-radius: 35px;
       border-bottom-left-radius: 35px;
       text-align: center;
@@ -91,6 +96,7 @@ const search = async (data: any) => {
         outline: none;
         height: 70px;
         border: none;
+        line-height: 70px;
         border-top-right-radius: 35px;
         border-bottom-right-radius: 35px;
         background: #f5f2f0;
@@ -103,6 +109,25 @@ const search = async (data: any) => {
 
   div:nth-child(3) {
     font-size: 28px;
+  }
+}
+
+.delete {
+  margin: 29px;
+  display: flex;
+  height: 40px;
+  line-height: 40px;
+  justify-content: space-between;
+
+  div:nth-child(1) {
+    font-size: 30px;
+  }
+
+  div:nth-child(2) {
+    i {
+      font-size: 35px;
+      color: #666666;
+    }
   }
 }
 </style>

@@ -22,13 +22,13 @@
     </div>
   </div>
   <div
-    class="commentContentTop1"
-    v-for="item in mv.hotComments"
-    :key="item"
-    v-if="ifShow.btn1"
+      class="commentContentTop1"
+      v-for="item in mv.hotComments"
+      :key="item"
+      v-if="ifShow.btn1"
   >
     <div class="left">
-      <span><img :src="item['user']['avatarUrl']" alt="" /></span>
+      <span><img :src="item['user']['avatarUrl']" alt=""/></span>
       <div>
         <span>{{ item["user"]["nickname"] }}</span>
         <span>{{ item["timeStr"] }}</span>
@@ -41,13 +41,13 @@
     <div class="footer">{{ item.content }}</div>
   </div>
   <div
-    class="commentContentTop2"
-    v-for="item in mv.hotComments"
-    :key="item"
-    v-if="ifShow.btn2"
+      class="commentContentTop2"
+      v-for="item in mv.hotComments"
+      :key="item"
+      v-if="ifShow.btn2"
   >
     <div class="left">
-      <span><img :src="item['user']['avatarUrl']" alt="" /></span>
+      <span><img :src="item['user']['avatarUrl']" alt=""/></span>
       <div>
         <span>{{ item["user"]["nickname"] }}</span>
         <span>{{ item["timeStr"] }}</span>
@@ -60,13 +60,13 @@
     <div class="footer">{{ item.content }}</div>
   </div>
   <div
-    class="commentContentTop3"
-    v-for="item in mv.comments"
-    :key="item"
-    v-if="ifShow.btn3"
+      class="commentContentTop3"
+      v-for="item in mv.comments"
+      :key="item"
+      v-if="ifShow.btn3"
   >
     <div class="left">
-      <span><img :src="item['user']['avatarUrl']" alt="" /></span>
+      <span><img :src="item['user']['avatarUrl']" alt=""/></span>
       <div>
         <span>{{ item["user"]["nickname"] }}</span>
         <span>{{ item["timeStr"] }}</span>
@@ -81,14 +81,14 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, onMounted } from "vue";
-import { MvApi, MvCommentApi } from "../../../api/Find/Mv";
-import { useRouter, useRoute } from "vue-router";
+import {reactive, onMounted} from "vue";
+import {MvApi, MvCommentApi} from "../../../api/Find/Mv";
+import {useRouter, useRoute} from "vue-router";
+import {MvType} from "../../../type/Find/Mv";
 
 const router = useRouter();
 const route = useRoute();
-let mv: any = reactive({
-  id: 0,
+let mv: MvType = reactive({
   mvId: 0,
   url: "",
   comments: [],
@@ -96,16 +96,15 @@ let mv: any = reactive({
   total: 0,
 });
 onMounted(async () => {
-  mv.id = route.query.id;
-  const res1 = await MvApi(mv.id);
-  mv.url = res1.data.data.url;
+  const res1 = await MvApi(route.query.id as any);
   mv.mvId = res1.data.data.id;
-  const res2 = await MvCommentApi(mv.id);
+  mv.url = res1.data.data.url;
+  const res2 = await MvCommentApi(route.query.id as any);
   mv.comments = res2.data.comments;
   mv.hotComments = res2.data.hotComments;
   mv.total = res2.data.total;
 });
-const btn = () => {
+const btn = (): void => {
   router.go(-1);
 };
 let ifShow = reactive({
@@ -113,17 +112,17 @@ let ifShow = reactive({
   btn2: false,
   btn3: false,
 });
-const btn1 = () => {
+const btn1 = (): void => {
   ifShow.btn1 = true;
   ifShow.btn2 = false;
   ifShow.btn3 = false;
 };
-const btn2 = () => {
+const btn2 = (): void => {
   ifShow.btn1 = false;
   ifShow.btn2 = true;
   ifShow.btn3 = false;
 };
-const btn3 = () => {
+const btn3 = (): void => {
   ifShow.btn1 = false;
   ifShow.btn2 = false;
   ifShow.btn3 = true;

@@ -19,13 +19,13 @@
     </div>
   </div>
   <div
-    class="commentContentTop1"
-    v-for="item in comment.hotComments"
-    :key="item"
-    v-if="ifShow.btn1"
+      class="commentContentTop1"
+      v-for="item in comment.hotComments"
+      :key="item"
+      v-if="ifShow.btn1"
   >
     <div class="left">
-      <span><img :src="item['user']['avatarUrl']" alt="" /></span>
+      <span><img :src="item['user']['avatarUrl']" alt=""/></span>
       <div>
         <span>{{ item["user"]["nickname"] }}</span>
         <span>{{ item["timeStr"] }}</span>
@@ -38,13 +38,13 @@
     <div class="footer">{{ item.content }}</div>
   </div>
   <div
-    class="commentContentTop2"
-    v-for="item in comment.hotComments"
-    :key="item"
-    v-if="ifShow.btn2"
+      class="commentContentTop2"
+      v-for="item in comment.hotComments"
+      :key="item"
+      v-if="ifShow.btn2"
   >
     <div class="left">
-      <span><img :src="item['user']['avatarUrl']" alt="" /></span>
+      <span><img :src="item['user']['avatarUrl']" alt=""/></span>
       <div>
         <span>{{ item["user"]["nickname"] }}</span>
         <span>{{ item["timeStr"] }}</span>
@@ -57,13 +57,13 @@
     <div class="footer">{{ item.content }}</div>
   </div>
   <div
-    class="commentContentTop3"
-    v-for="item in comment.comments"
-    :key="item"
-    v-if="ifShow.btn3"
+      class="commentContentTop3"
+      v-for="item in comment.comments"
+      :key="item"
+      v-if="ifShow.btn3"
   >
     <div class="left">
-      <span><img :src="item['user']['avatarUrl']" alt="" /></span>
+      <span><img :src="item['user']['avatarUrl']" alt=""/></span>
       <div>
         <span>{{ item["user"]["nickname"] }}</span>
         <span>{{ item["timeStr"] }}</span>
@@ -78,14 +78,14 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouter, useRoute } from "vue-router";
-import { songlistCommentApi } from "../../../api/Find/Comment";
-import { onMounted, reactive } from "vue";
+import {useRouter, useRoute} from "vue-router";
+import {songlistCommentApi} from "../../../api/Find/Comment";
+import {onMounted, reactive} from "vue";
+import {CommentType} from "../../../type/Find/Comment";
 
 const router = useRouter();
 const route = useRoute();
-let comment: any = reactive({
-  id: route.query.id,
+const comment: CommentType = reactive({
   total: 0,
   comments: [],
   hotComments: [],
@@ -96,25 +96,25 @@ let ifShow = reactive({
   btn3: false,
 });
 onMounted(async () => {
-  const res = await songlistCommentApi(comment.id);
+  const res = await songlistCommentApi(route.query.id as any);
   comment.total = res.data.total;
   comment.comments = res.data.comments;
   comment.hotComments = res.data.hotComments;
 });
-const btn = () => {
+const btn = (): void => {
   router.go(-1);
 };
-const btn1 = () => {
+const btn1 = (): void => {
   ifShow.btn1 = true;
   ifShow.btn2 = false;
   ifShow.btn3 = false;
 };
-const btn2 = () => {
+const btn2 = (): void => {
   ifShow.btn1 = false;
   ifShow.btn2 = true;
   ifShow.btn3 = false;
 };
-const btn3 = () => {
+const btn3 = (): void => {
   ifShow.btn1 = false;
   ifShow.btn2 = false;
   ifShow.btn3 = true;
@@ -193,6 +193,7 @@ const btn3 = () => {
       color: black !important;
       font-weight: 500;
     }
+
     .style2 {
       color: black !important;
       font-weight: 500;

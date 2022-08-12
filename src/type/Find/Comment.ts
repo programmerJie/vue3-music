@@ -1,3 +1,5 @@
-export interface Comment {
-
+export interface CommentType {
+    total:number,
+    comments:any,
+    hotComments:any
 }

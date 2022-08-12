@@ -53,7 +53,7 @@
     </div>
     <div>
       <router-link
-          :to="{ path: '/comment', query: { id: songListdetails['id'] } }"
+          :to="{ path: '/comment', query: { id: route.query.id } }"
       >
         <span><i class="iconfont">&#xe763;&nbsp;</i></span>
         <span>{{ songListdetails.commentCount }}</span>
@@ -103,7 +103,7 @@ import {onMounted, reactive, computed} from "vue";
 import {songListDetailsApi, songListApi} from "../../../api/Find/SongList";
 import PlayEr from "../../../components/playEr.vue";
 import {storeData} from "../../../store";
-import {musicUrlApi} from "../../../api/Find/SongList";
+import {SongListDetailsType, SongListType} from "../../../type/Find/SongList";
 
 const router = useRouter();
 const route = useRoute();
@@ -111,8 +111,7 @@ const store = storeData();
 const btn = () => {
   router.go(-1);
 };
-let songListdetails: any = reactive({
-  id: 0,
+let songListdetails: SongListDetailsType = reactive({
   img: "",
   palyCount: 0,
   name: "",
@@ -124,12 +123,11 @@ let songListdetails: any = reactive({
   shareCount: "",
   trackCount: "",
 });
-let songList: any = reactive({
+const songList: SongListType = reactive({
   music: [],
 });
 onMounted(async () => {
-  songListdetails.id = route.query.id;
-  const res = await songListDetailsApi(songListdetails.id);
+  const res = await songListDetailsApi(route.query.id as any);
   songListdetails.img = res.data.playlist.coverImgUrl;
   songListdetails.palyCount = res.data.playlist.playCount;
   songListdetails.name = res.data.playlist.name;
@@ -140,7 +138,7 @@ onMounted(async () => {
   songListdetails.commentCount = res.data.playlist.commentCount;
   songListdetails.shareCount = res.data.playlist.shareCount;
   songListdetails.trackCount = res.data.playlist.trackCount;
-  const res2 = await songListApi(songListdetails.id);
+  const res2 = await songListApi(route.query.id as any);
   songList.music = res2.data.songs;
 });
 //把播放次数的数字转换为汉字
@@ -154,7 +152,7 @@ const count = (data: number): string | number => {
   }
 };
 //把订阅的人数的数字转换为汉字
-const subscribedCount = (data: number) => {
+const subscribedCount = (data: number): string | number => {
   if (data >= 100000) {
     return (data / 10000).toFixed(1) + "万";
   } else {

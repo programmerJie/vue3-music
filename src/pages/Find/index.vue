@@ -243,6 +243,7 @@ const ellipsis = (data: string): string => {
       border-radius: 35px;
       width: 580px;
       height: 70px;
+      line-height: 70px;
       background: #f5f2f0;
       text-align: center;
 
