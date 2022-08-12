@@ -97,6 +97,7 @@
       </van-swipe-item>
     </van-swipe>
   </div>
+  <div class="wire"></div>
   <div class="recommendMUsic">
     <div class="recommendMusicTitle">
       <div>推荐歌单</div>
@@ -223,7 +224,6 @@ const ellipsis = (data: string): string => {
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
-
 .navbar {
   margin: 29px;
   height: 70px;
@@ -289,6 +289,12 @@ const ellipsis = (data: string): string => {
       .iconfont {
         font-size: 50px;
         color: red;
+        width: 90px;
+        height: 90px;
+        line-height: 90px;
+        border-radius: 45px;
+        background: #fce3ea;
+        display: inline-block;
       }
     }
 
@@ -299,7 +305,9 @@ const ellipsis = (data: string): string => {
     }
   }
 }
-
+.wire{
+  border-bottom: 1px solid #f5f2f0;
+}
 .recommendMUsic {
   margin: 29px;
 

@@ -27,6 +27,7 @@ import {useRoute} from "vue-router";
 import {searchApi} from "../../../api/Find/Search";
 import {reactive, ref, watch} from "vue";
 import {storeData} from "../../../store";
+
 const store = storeData();
 let song = '';
 const route = useRoute();
@@ -100,7 +101,7 @@ const search = async (data: any) => {
         border-top-right-radius: 35px;
         border-bottom-right-radius: 35px;
         background: #f5f2f0;
-        font-size: 25px;
+        font-size: 30px;
         display: block;
       }
     }
