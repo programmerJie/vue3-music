@@ -6,7 +6,7 @@
     <div>
       <div><i class="iconfont">&#xe622;</i></div>
       <div>
-        <input @click="store.search==null" type="text" :placeholder="store.search" v-model="song"
+        <input @click="hello" type="text" :placeholder="store.search" v-model="song"
                style="color:#666666">
       </div>
     </div>
@@ -41,7 +41,9 @@ const search = async (data: any) => {
     console.log(res);
   }
 }
-
+const hello = () => {
+  store.search = null
+}
 </script>
 
 <style scoped lang="less">
