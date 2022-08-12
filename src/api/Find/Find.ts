@@ -23,8 +23,8 @@ export const recommendMusicApi = () => {
         method: "GET",
     });
 };
-//获取推荐新音乐
-export const recommendNewMusicApi = () => {
+//获取推荐歌曲
+export const recommendSongApi = () => {
     return request({
         url: '/personalized/newsong',
         method:'GET'

@@ -1,8 +1,8 @@
 import request from "../../utils/request";
 
-export const searchApi = (data:any) => {
-  return request({
-    url: `/cloudsearch?keywords=${data}`,
-    method: "GET",
-  });
+export const searchApi = (data: string | number) => {
+    return request({
+        url: `/cloudsearch?keywords=${data}`,
+        method: "GET",
+    });
 };
