@@ -25,7 +25,7 @@ import {reactive, ref, watch} from "vue";
 import {storeData} from "../../../store";
 
 const store = storeData();
-let song = null;
+let song = '';
 const route = useRoute();
 const router = useRouter();
 const btn = () => {
