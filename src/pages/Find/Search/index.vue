@@ -23,7 +23,7 @@
       {{ item }}
     </span>
   </div>
-  <div class="hotSearch" v-if="false">
+  <div class="hotSearch" v-if="song===''">
     <div class="hotSearchTitle">
       <div>热搜榜</div>
       <div>
@@ -35,6 +35,25 @@
          @click="clickName(item['searchWord'])">
       <div>{{ index + 1 }}</div>
       <div>{{ item['searchWord'] }}</div>
+    </div>
+  </div>
+  <div class="songTitle" v-if="song!==''">
+    <div>
+      <span><i class="iconfont">&#xe624;</i></span>
+      <span>播放全部</span>
+    </div>
+    <div><i class="iconfont">&#xe669;</i></div>
+  </div>
+  <div class="songContnet" v-for="item in SongList.data" :key="item" v-if="song!==''">
+    <div @click="store.musicId(item)">
+      <span>{{ result1(item.name) }}</span>
+      <span>{{ item['ar'][0]['name'] }}-{{ result2(item['al']['name']) }}</span>
+    </div>
+    <div>
+      <router-link :to="{ path: '/mv', query: { id: item['mv'] } }">
+      <span v-if="item['mv']!==0"><i class="iconfont">&#xe665;</i></span>
+      </router-link>
+      <span><i class="iconfont">&#xe8c4;</i></span>
     </div>
   </div>
   <div class="style"></div>
@@ -60,10 +79,7 @@ const ifShow = ref(false)
 const hotSearchList = reactive({
   data: []
 })
-const oldSongList = reactive({
-  data: []
-})
-const newSongList = reactive({
+const SongList = reactive({
   data: []
 })
 const btn = () => {
@@ -72,6 +88,22 @@ const btn = () => {
 const click = (data: any) => {
   song.value = data
 }
+//判断歌单列表列歌名的字符长度,如果超过就省略
+const result1 = (data: string): string => {
+  if (data.length >= 16) {
+    return data.slice(0, 16) + "...";
+  } else {
+    return data;
+  }
+};
+//判断歌单列表里歌名的字符长度,如果超过就省略
+const result2 = (data: string): string => {
+  if (data.length >= 12) {
+    return data.slice(0, 12) + "...";
+  } else {
+    return data;
+  }
+};
 const search = async (data: any) => {
   ifShow.value = true
   if (data === '') {
@@ -82,11 +114,11 @@ const search = async (data: any) => {
   if (data === '') {
     const res = await searchApi(store.search as any);
     console.log(res.data.result.songs)
-    oldSongList.data = res.data.result.songs
+    SongList.data = res.data.result.songs
   } else {
     const res = await searchApi(data);
     console.log(res.data.result.songs)
-    newSongList.data = res.data.result.songs
+    SongList.data = res.data.result.songs
   }
 }
 const del = () => {
@@ -254,6 +286,85 @@ onMounted(async () => {
     div:nth-child(2) {
       height: 60px;
       line-height: 60px;
+    }
+  }
+}
+
+.songTitle {
+  margin: 0 29px;
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  line-height: 70px;
+
+  div:nth-child(1) {
+    span:nth-child(1) {
+      margin-right: 20px;
+      vertical-align: middle;
+
+      i {
+        font-size: 40px;
+        color: red
+      }
+    }
+
+    span:nth-child(2) {
+      font-size: 30px;
+      display: inline-block;
+    }
+  }
+
+  div:nth-child(2) {
+    i {
+      font-size: 40px;
+    }
+  }
+}
+
+.songContnet {
+  margin: 0 29px;
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+
+  div:nth-child(1) {
+    display: flex;
+    flex-flow: column;
+
+    span:nth-child(1) {
+      margin-top: 10px;
+      font-size: 27px;
+    }
+
+    span:nth-child(2) {
+      font-size: 20px;
+    }
+  }
+
+  div:nth-child(2) {
+    span:nth-child(1) {
+      height: 100px;
+      width: 80px;
+      display: inline-block;
+      line-height: 100px;
+      text-align: center;
+
+      i {
+        font-size: 40px;
+        color:black;
+      }
+    }
+
+    span:nth-child(2) {
+      height: 100px;
+      width: 80px;
+      display: inline-block;
+      line-height: 100px;
+      text-align: center;
+
+      i {
+        font-size: 40px;
+      }
     }
   }
 }
