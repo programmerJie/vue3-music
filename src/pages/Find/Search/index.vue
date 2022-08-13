@@ -46,12 +46,12 @@
   </div>
   <div class="songContnet" v-for="item in SongList.data" :key="item" v-if="song!==''">
     <div @click="store.musicId(item)">
-      <span>{{ result1(item.name) }}</span>
+      <span>{{ result1(item['name']) }}</span>
       <span>{{ item['ar'][0]['name'] }}-{{ result2(item['al']['name']) }}</span>
     </div>
     <div>
       <router-link :to="{ path: '/mv', query: { id: item['mv'] } }">
-      <span v-if="item['mv']!==0"><i class="iconfont">&#xe665;</i></span>
+        <span v-if="item['mv']!==0"><i class="iconfont">&#xe665;</i></span>
       </router-link>
       <span><i class="iconfont">&#xe8c4;</i></span>
     </div>
@@ -351,7 +351,7 @@ onMounted(async () => {
 
       i {
         font-size: 40px;
-        color:black;
+        color: black;
       }
     }
 
