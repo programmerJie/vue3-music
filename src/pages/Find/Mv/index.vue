@@ -1,4 +1,5 @@
 <template>
+  <!--  导航栏-->
   <div class="navBar">
     <div>
       <span @click="btn"><i class="iconfont">&#xe697;</i></span>
@@ -8,9 +9,11 @@
       <span><i class="iconfont">&#xe86e;</i></span>
     </div>
   </div>
+  <!--  视频播放-->
   <div class="video">
     <video controls autoplay :src="mv.url"></video>
   </div>
+  <!--  评论区-->
   <div class="commentTitle">
     <div class="left">
       <span>评论区({{ mv.total }})</span>
@@ -21,6 +24,7 @@
       <span @click="btn3" :class="{ style2: ifShow.btn3 }">最新</span>
     </div>
   </div>
+<!--  top1,top2,top3用于点击切换推荐,最热,最新-->
   <div
       class="commentContentTop1"
       v-for="item in mv.hotComments"

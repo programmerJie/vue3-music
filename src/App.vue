@@ -11,8 +11,11 @@ onMounted(async () => {
 });
 </script>
 <template>
-  <router-view>
-
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" v-if="$route.meta.keepAlive"/>
+    </keep-alive>
+    <component :is="Component" v-if="!$route.meta.keepAlive"/>
   </router-view>
   <audio
       :src="`https://music.163.com/song/media/outer/url?id=${store.music.id}.mp3`"
@@ -86,7 +89,6 @@ onMounted(async () => {
     </van-tabbar-item>
   </van-tabbar>
 </template>
-关注
 <style scoped lang="less">
 .iconfont {
   font-family: "iconfont" !important;

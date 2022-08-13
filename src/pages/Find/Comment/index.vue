@@ -1,4 +1,5 @@
 <template>
+  <!--  导航栏-->
   <div class="navBar">
     <div>
       <span @click="btn"><i class="iconfont">&#xe697;</i></span>
@@ -8,6 +9,7 @@
       <span><i class="iconfont">&#xe86e;</i></span>
     </div>
   </div>
+  <!--  评论区-->
   <div class="commentTitle">
     <div class="left">
       <span>评论区</span>
@@ -18,6 +20,7 @@
       <span @click="btn3" :class="{ style2: ifShow.btn3 }">最新</span>
     </div>
   </div>
+  <!--  top1,top2,top3用于点击切换推荐,最热,最新-->
   <div
       class="commentContentTop1"
       v-for="item in comment.hotComments"

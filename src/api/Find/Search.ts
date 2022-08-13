@@ -6,3 +6,9 @@ export const searchApi = (data: string | number) => {
         method: "GET",
     });
 };
+export const hotSearchListApi = () => {
+    return request({
+        url: '/search/hot/detail',
+        method: 'GET'
+    })
+}

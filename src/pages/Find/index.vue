@@ -1,4 +1,5 @@
 <template>
+<!--  导航栏-->
   <div class="navbar">
     <div>
       <i class="iconfont" @click="showPopup">&#xe60c;</i>
@@ -20,6 +21,7 @@
     </div>
     <div><i class="iconfont">&#xe7e8;</i></div>
   </div>
+<!--  轮播-->
   <div class="bannar">
     <van-swipe
         :autoplay="3000"
@@ -37,6 +39,7 @@
       </van-swipe-item>
     </van-swipe>
   </div>
+<!--  标签栏-->
   <div class="tabBar">
     <van-swipe :loop="false" :width="70" :show-indicators="false">
       <van-swipe-item>
@@ -101,7 +104,9 @@
       </van-swipe-item>
     </van-swipe>
   </div>
+<!--  虚线-->
   <div class="wire"></div>
+<!--  歌单列表-->
   <div class="recommendMUsic">
     <div class="recommendMusicTitle">
       <div>推荐歌单</div>
@@ -134,6 +139,7 @@
       </van-swipe>
     </div>
   </div>
+<!--  推荐歌曲-->
   <div class="recommendNewMusicTitle">
     <div>
       <span><i class="iconfont">&#xec08;</i></span>

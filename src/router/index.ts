@@ -7,7 +7,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("../pages/Find/index.vue"),
         meta: {
             title: '发现',
-            keepAlive: true,
+            keepAlive: false,
         }
     },
     {

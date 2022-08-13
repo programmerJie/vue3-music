@@ -1,7 +1,9 @@
 <template>
+  <!--  歌单背景图片-->
   <div class="backgroundImg">
     <img :src="songListdetails.img" alt=""/>
   </div>
+  <!--  导航栏-->
   <div class="navBar">
     <div>
       <span @click="btn"><i class="iconfont">&#xe697;</i></span>
@@ -12,6 +14,7 @@
       <span><i class="iconfont">&#xe8c4;</i></span>
     </div>
   </div>
+  <!--  歌单描述-->
   <div class="content">
     <div class="left">
       <p v-if="songListdetails.img!==''">
@@ -45,7 +48,9 @@
       </p>
     </div>
   </div>
+  <!--  清除浮动-->
   <div class="clear"></div>
+  <!--  标签栏-->
   <div class="footer">
     <div>
       <span><i class="iconfont">&#xe60f;&nbsp;</i></span>
@@ -64,6 +69,7 @@
       <span>{{ songListdetails.shareCount }} </span>
     </div>
   </div>
+  <!--  播放列表-->
   <div class="songListTitle">
     <div>
       <span><i class="iconfont">&#xe626;</i></span>
@@ -95,12 +101,14 @@
       <span><i class="iconfont">&#xe8c4;</i></span>
     </div>
   </div>
+  <!--  style用于与底部播放组件保持距离-->
   <div class="style"></div>
+  <!--  播放组件-->
   <play-er></play-er>
 </template>
 <script lang="ts" setup>
 import {useRouter, useRoute} from "vue-router";
-import {onMounted, reactive, computed} from "vue";
+import {onMounted, reactive, computed,} from "vue";
 import {songListDetailsApi, songListApi, musicIfUseApi} from "../../../api/Find/SongList";
 import PlayEr from "../../../components/playEr.vue";
 import {storeData} from "../../../store";
