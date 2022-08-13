@@ -2,19 +2,18 @@
 import {useRoute} from "vue-router";
 import {onMounted, reactive, ref} from "vue";
 import {storeData} from "./store";
-import {musicIfUseApi} from "./api/Find/SongList";
 
 const store = storeData();
 const route = useRoute();
 const yinyue = ref(null);
 onMounted(async () => {
   store.audio = yinyue;
-  const res = await musicIfUseApi(store.music.id);
-  console.log(res);
 });
 </script>
 <template>
-  <router-view/>
+  <router-view>
+
+  </router-view>
   <audio
       :src="`https://music.163.com/song/media/outer/url?id=${store.music.id}.mp3`"
       controls
@@ -69,13 +68,25 @@ onMounted(async () => {
       <div><i class="iconfont">&#xe63b;</i></div>
       <div>发现</div>
     </van-tabbar-item>
+    <van-tabbar-item replace to="/blog" class="mine">
+      <div><i class="iconfont">&#xe8b1;</i></div>
+      <div>博客</div>
+    </van-tabbar-item>
     <van-tabbar-item replace to="/mine" class="mine">
-      <div><i class="iconfont">&#xe60c;</i></div>
+      <div><i class="iconfont">&#xe66d;</i></div>
       <div>我的</div>
+    </van-tabbar-item>
+    <van-tabbar-item replace to="/follow" class="mine">
+      <div><i class="iconfont">&#xe8bc;</i></div>
+      <div>关注</div>
+    </van-tabbar-item>
+    <van-tabbar-item replace to="/yuncun" class="mine">
+      <div><i class="iconfont">&#xe635;</i></div>
+      <div>云村</div>
     </van-tabbar-item>
   </van-tabbar>
 </template>
-
+关注
 <style scoped lang="less">
 .iconfont {
   font-family: "iconfont" !important;

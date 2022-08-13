@@ -21,7 +21,7 @@ export const musicUrlApi = (data: number) => {
   });
 };
 //获取音乐是否可用
-export const musicIfUseApi = (data: number) => {
+export const musicIfUseApi = (data: any) => {
   return request({
     url: `/check/music?id=${data}`,
     method: "GET",

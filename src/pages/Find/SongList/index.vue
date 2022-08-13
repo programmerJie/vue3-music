@@ -78,13 +78,14 @@
   <div
       class="songListMusic"
       v-for="(item, index) in songList.music"
-      :key="item"
-  >
-    <div class="left" @click="store.musicId(item)">
-      <span class="leftSpan">{{ index + 1 }}</span>
-      <div class="leftDiv">
-        <span>{{ result4(item.name) }}</span>
-        <span>{{ item["ar"][0].name }}-{{ result5(item["al"].name) }}</span>
+      :key="item">
+    <div class="click" @click="hello(item.id)">
+      <div class="left" @click="store.musicId(item)">
+        <span class="leftSpan">{{ index + 1 }}</span>
+        <div class="leftDiv">
+          <span>{{ result4(item.name) }}</span>
+          <span>{{ item["ar"][0].name }}-{{ result5(item["al"].name) }}</span>
+        </div>
       </div>
     </div>
     <div class="right">
@@ -100,7 +101,7 @@
 <script lang="ts" setup>
 import {useRouter, useRoute} from "vue-router";
 import {onMounted, reactive, computed} from "vue";
-import {songListDetailsApi, songListApi} from "../../../api/Find/SongList";
+import {songListDetailsApi, songListApi, musicIfUseApi} from "../../../api/Find/SongList";
 import PlayEr from "../../../components/playEr.vue";
 import {storeData} from "../../../store";
 import {SongListDetailsType, SongListType} from "../../../type/Find/SongList";
@@ -123,6 +124,10 @@ let songListdetails: SongListDetailsType = reactive({
   shareCount: "",
   trackCount: "",
 });
+const hello = async (data: number) => {
+  // const res = await musicIfUseApi(data)
+  // console.log(res.data.message)
+}
 const songList: SongListType = reactive({
   music: [],
 });
@@ -140,6 +145,7 @@ onMounted(async () => {
   songListdetails.trackCount = res.data.playlist.trackCount;
   const res2 = await songListApi(route.query.id as any);
   songList.music = res2.data.songs;
+  console.log(res2.data.songs)
 });
 //把播放次数的数字转换为汉字
 const count = (data: number): string | number => {
@@ -444,32 +450,34 @@ const result5 = (data: string): string => {
   justify-content: space-between;
   background: white;
 
-  .left {
-    display: flex;
-    height: 100px;
-
-    .leftSpan {
-      width: 80px;
-      height: 100px;
-      line-height: 100px;
-      text-align: center;
-      color: #666666;
-    }
-
-    .leftDiv {
+  .click {
+    .left {
       display: flex;
-      flex-direction: column;
-      width: 486px;
+      height: 100px;
 
-      span:nth-child(1) {
-        padding-top: 10px;
-        font-size: 27px;
-        font-weight: 500;
+      .leftSpan {
+        width: 80px;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        color: #666666;
       }
 
-      span:nth-child(2) {
-        color: #666666;
-        font-size: 20px;
+      .leftDiv {
+        display: flex;
+        flex-direction: column;
+        width: 486px;
+
+        span:nth-child(1) {
+          padding-top: 10px;
+          font-size: 27px;
+          font-weight: 500;
+        }
+
+        span:nth-child(2) {
+          color: #666666;
+          font-size: 20px;
+        }
       }
     }
   }
