@@ -6,9 +6,14 @@ import {storeData} from "./store";
 const store = storeData();
 const route = useRoute();
 const yinyue = ref(null);
+
 onMounted(async () => {
   store.audio = yinyue;
 });
+const show = ref(false);
+const showPopup = () => {
+  show.value = true
+}
 </script>
 <template>
   <router-view v-slot="{ Component }">
@@ -32,7 +37,7 @@ onMounted(async () => {
       route.path !== '/search'
     "
   >
-    <div class="left">
+    <div class="left" @click="showPopup">
       <span>
         <van-image
             round
@@ -41,7 +46,7 @@ onMounted(async () => {
             :class="{ rotate: store.ifShow.ifFalse, paused: store.ifShow.ifTrue }"
         />
       </span>
-      <span>{{ store.music.al.name }}</span>
+      <span>{{ store.music.name }}</span>
       <span>-</span>
       <span>{{ store.music.ar[0].name }}</span>
     </div>
@@ -88,6 +93,15 @@ onMounted(async () => {
       <div>云村</div>
     </van-tabbar-item>
   </van-tabbar>
+  <van-popup
+      v-model:show="show"
+      closeable
+      close-icon-position="top-left"
+      position="bottom"
+      close-icon="arrow-down"
+      :style="{ height: '100%' }">
+    hello
+  </van-popup>
 </template>
 <style scoped lang="less">
 .iconfont {
@@ -232,5 +246,9 @@ onMounted(async () => {
       font-size: 25px;
     }
   }
+}
+
+.van-icon:before {
+  font-size: 40px !important;
 }
 </style>

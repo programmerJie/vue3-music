@@ -194,7 +194,7 @@ const result3 = (data: string) => {
   if (data.length >= 16) {
     return data.slice(0, 16) + "...";
   } else if (data.length === 0) {
-    return data + '没有设置签名'
+    return data + '介绍:无'
   } else {
     return data
   }

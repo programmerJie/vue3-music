@@ -12,7 +12,7 @@
         </template>
 </van-image>
       </span>
-      <span>{{ store.music.al.name }}</span>
+      <span>{{ store.music.name }}</span>
       <span>-</span>
       <span>{{ store.music.ar[0].name }}</span>
     </div>

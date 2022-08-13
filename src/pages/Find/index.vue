@@ -1,15 +1,15 @@
 <template>
+  <van-popup
+      v-model:show="show"
+      position="left"
+      :style="{ width: '80%', height: '100%' }"
+  >
+    目录
+  </van-popup>
 <!--  导航栏-->
   <div class="navbar">
     <div>
       <i class="iconfont" @click="showPopup">&#xe60c;</i>
-      <van-popup
-          v-model:show="show"
-          position="left"
-          :style="{ width: '80%', height: '100%' }"
-      >
-        目录
-      </van-popup>
     </div>
     <div class="search">
       <router-link to="/search">

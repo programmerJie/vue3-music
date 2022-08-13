@@ -330,6 +330,7 @@ onMounted(async () => {
   div:nth-child(1) {
     display: flex;
     flex-flow: column;
+    width: 518px;
 
     span:nth-child(1) {
       margin-top: 10px;
