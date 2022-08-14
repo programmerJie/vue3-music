@@ -2,14 +2,16 @@
   <div class="playEr">
     <div class="left" @click="showPopup">
       <span>
-        <van-image :src="store.music.al.picUrl"
-                   round
-                   lazy-load
-                   class="img"
-                   :class="{ rotate: store.ifShow.ifFalse }">
-      <template v-slot:loading>
-          <van-loading/>
-        </template>
+        <van-image
+            :src="store.music.al.picUrl"
+            round
+            lazy-load
+            class="img rotate1"
+            :class="{ play: store.ifShow.ifFalse, pause: store.ifShow.ifTrue}"
+        >
+          <template v-slot:loading>
+            <van-loading/>
+          </template>
         </van-image>
       </span>
       <span>{{ store.music.name }}</span>
@@ -17,16 +19,21 @@
       <span>{{ store.music.ar[0].name }}</span>
     </div>
     <div class="right">
-      <span v-if="store.ifShow.ifTrue" @click="store.btn1()"
+      <span v-if="store.ifShow.ifTrue" @click="store.play()"
       ><i class="iconfont">&#xe624;</i></span
       >
-      <span v-if="store.ifShow.ifFalse" @click="store.btn2()"
+      <span v-if="store.ifShow.ifFalse" @click="store.pause()"
       ><i class="iconfont">&#xe629;</i></span
       >
       <span><i class="iconfont">&#xe640;</i></span>
     </div>
   </div>
-  <van-popup v-model:show="show" position="bottom" :style="{ height: '100%' }" class="popup">
+  <van-popup
+      v-model:show="show"
+      position="bottom"
+      :style="{ height: '100%' }"
+      class="popup"
+  >
     <van-image :src="store.music.al.picUrl" lazy-load class="img">
       <template v-slot:loading>
         <van-loading type="spinner" size="20"/>
@@ -45,10 +52,26 @@
       </div>
     </div>
     <div class="content">
-      <div><img src="../assets/images/needle.png" alt="" :class="{rotate3:store.ifShow.ifFalse}"></div>
       <div>
-        <img src="../assets/images/disc.png" alt="" :class="{rotate2: store.ifShow.ifFalse}">
-        <img :src="store.music.al.picUrl" alt="" :class="{rotate2: store.ifShow.ifFalse}">
+        <img
+            src="../assets/images/needle.png"
+            alt=""
+            :class="{ rotate3: store.ifShow.ifFalse }"
+        />
+      </div>
+      <div>
+        <img
+            src="../assets/images/disc.png"
+            alt=""
+            class="rotate2"
+            :class="{ play: store.ifShow.ifFalse, pause: store.ifShow.ifTrue}"
+        />
+        <img
+            :src="store.music.al.picUrl"
+            alt=""
+            class="rotate2"
+            :class="{ play: store.ifShow.ifFalse, pause: store.ifShow.ifTrue }"
+        />
       </div>
     </div>
     <div class="footer">
@@ -62,8 +85,12 @@
       <div>
         <span><i class="iconfont">&#xe61f;</i></span>
         <span><i class="iconfont">&#xe78a;</i></span>
-        <span v-if="store.ifShow.ifTrue" @click="store.btn1()"><i class="iconfont">&#xe624;</i></span>
-        <span v-if="store.ifShow.ifFalse" @click="store.btn2()"><i class="iconfont">&#xe629;</i></span>
+        <span v-if="store.ifShow.ifTrue" @click="store.play()"
+        ><i class="iconfont">&#xe624;</i></span
+        >
+        <span v-if="store.ifShow.ifFalse" @click="store.pause()"
+        ><i class="iconfont">&#xe629;</i></span
+        >
         <span><i class="iconfont">&#xe7a5;</i></span>
         <span><i class="iconfont">&#xe637;</i></span>
       </div>
@@ -80,11 +107,11 @@ const store = storeData();
 const route = useRoute();
 const show = ref(false);
 const showPopup = () => {
-  show.value = true
-}
+  show.value = true;
+};
 const btn = () => {
-  show.value = false
-}
+  show.value = false;
+};
 </script>
 <style scoped lang="less">
 .iconfont {
@@ -112,8 +139,9 @@ const btn = () => {
   .left {
     padding-left: 29px;
     width: 520px;
+
     span:nth-child(1) {
-      .rotate {
+      .rotate1 {
         animation: rotate 18s linear 0s infinite forwards;
         @keyframes rotate {
           from {
@@ -123,6 +151,14 @@ const btn = () => {
             transform: rotate(360deg);
           }
         }
+      }
+
+      .play {
+        animation-play-state: running;
+      }
+
+      .pause {
+        animation-play-state: paused;
       }
     }
 
@@ -191,6 +227,7 @@ const btn = () => {
     padding-right: 29px;
   }
 }
+
 .popup {
   .img {
     height: 100%;
@@ -214,7 +251,7 @@ const btn = () => {
       span {
         i {
           font-size: 50px;
-          color: white
+          color: white;
         }
       }
     }
@@ -243,7 +280,7 @@ const btn = () => {
 
       i {
         font-size: 50px;
-        color: white
+        color: white;
       }
     }
   }
@@ -264,6 +301,15 @@ const btn = () => {
         }
       }
     }
+
+    .play {
+      animation-play-state: running;
+    }
+
+    .pause {
+      animation-play-state: paused;
+    }
+
     .rotate3 {
       transform-origin: 0 0;
       transform: rotate(0deg) !important;
@@ -322,7 +368,7 @@ const btn = () => {
 
         i {
           font-size: 50px;
-          color: white
+          color: white;
         }
       }
 

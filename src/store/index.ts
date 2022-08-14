@@ -94,33 +94,30 @@ export const storeData = defineStore("store", {
         };
     },
     actions: {
-        btn1() {
-            this.ifShow.ifTrue = false;
-            this.ifShow.ifFalse = true;
-            // @ts-ignore
-            this.audio.play();
+        ended() {
+            this.ifShow.ifTrue = true
+            this.ifShow.ifFalse = false
         },
-        btn2() {
-            this.ifShow.ifTrue = true;
-            this.ifShow.ifFalse = false;
+        play() {
+            this.ifShow.ifTrue = false
+            this.ifShow.ifFalse = true
             // @ts-ignore
-            this.audio.pause();
+            this.audio.play()
+        },
+        pause() {
+            this.ifShow.ifTrue = true
+            this.ifShow.ifFalse = false
+            // @ts-ignore
+            this.audio.pause()
         },
         musicId(data: any) {
             this.music = data;
             // @ts-ignore
-            this.audio.autoplay = true;
+            this.audio.autoplay = true
             // @ts-ignore
             if (this.audio.autoplay) {
-                this.ifShow.ifTrue = false;
-                this.ifShow.ifFalse = true;
-            } else {
-                this.ifShow.ifTrue = true;
-                this.ifShow.ifFalse = false;
-            }
-            // @ts-ignore
-            if (this.audio.ended) {
-                this.ifShow.ifTrue = true
+                this.ifShow.ifTrue = false
+                this.ifShow.ifFalse = true
             }
         },
         recommendSong(picUrl: string, name: any, arName: any, id: any) {
@@ -129,18 +126,11 @@ export const storeData = defineStore("store", {
             this.music.ar[0].name = arName
             this.music.id = id
             // @ts-ignore
-            this.audio.autoplay = true;
+            this.audio.autoplay = true
             // @ts-ignore
             if (this.audio.autoplay) {
-                this.ifShow.ifTrue = false;
-                this.ifShow.ifFalse = true;
-            } else {
-                this.ifShow.ifTrue = true;
-                this.ifShow.ifFalse = false;
-            }
-            // @ts-ignore
-            if (this.audio.ended) {
-                this.ifShow.ifTrue = true
+                this.ifShow.ifTrue = false
+                this.ifShow.ifFalse = true
             }
         },
     },

@@ -26,7 +26,7 @@
 
     span:nth-child(1) {
       .rotate1 {
-        animation: rotate 18s linear 0s infinite;
+        animation: rotate 18s linear infinite;
         @keyframes rotate {
           from {
             transform: rotate(0deg);
@@ -35,6 +35,12 @@
             transform: rotate(360deg);
           }
         }
+      }
+      .play{
+        animation-play-state: running;
+      }
+      .pause{
+        animation-play-state: paused;
       }
     }
 
@@ -199,7 +205,8 @@
     height: 700px;
 
     .rotate2 {
-      animation: rotate 18s linear 0s infinite;
+      animation: rotate 18s linear  infinite;
+      animation-play-state: paused;
       @keyframes rotate {
         from {
           transform: rotate(0deg);
@@ -208,6 +215,12 @@
           transform: rotate(360deg);
         }
       }
+    }
+    .play{
+      animation-play-state: running;
+    }
+    .pause{
+      animation-play-state: paused;
     }
     .rotate3 {
       transform-origin: 0 0;
