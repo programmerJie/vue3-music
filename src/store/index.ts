@@ -119,5 +119,21 @@ export const storeData = defineStore("store", {
                 this.ifShow.ifFalse = false;
             }
         },
+        recommendSong(picUrl: string, name: any, arName: any, id: any) {
+            this.music.al.picUrl = picUrl
+            this.music.name = name
+            this.music.ar[0].name = arName
+            this.music.id = id
+            // @ts-ignore
+            this.audio.autoplay = true;
+            // @ts-ignore
+            if (this.audio.autoplay) {
+                this.ifShow.ifTrue = false;
+                this.ifShow.ifFalse = true;
+            } else {
+                this.ifShow.ifTrue = true;
+                this.ifShow.ifFalse = false;
+            }
+        },
     },
 });

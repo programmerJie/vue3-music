@@ -1,0 +1,260 @@
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 25px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.navbar {
+  margin: 29px;
+  height: 70px;
+  line-height: 70px;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+
+  div:nth-child(1) {
+    i {
+      font-size: 40px;
+    }
+  }
+
+  .search {
+    div {
+      border-radius: 35px;
+      width: 580px;
+      height: 70px;
+      line-height: 70px;
+      background: #f5f2f0;
+      text-align: center;
+
+      span:nth-child(1) {
+        i {
+          color: #666666;
+          vertical-align: middle;
+          margin-right: 5px;
+          font-size: 30px;
+        }
+      }
+
+      span:nth-child(2) {
+        color: #666666;
+        font-size: 30px;
+      }
+    }
+  }
+
+  div:nth-child(3) {
+    i {
+      font-size: 40px;
+    }
+  }
+}
+
+.bannar {
+  margin: 29px;
+  height: 250px;
+}
+
+.tabBar {
+  margin: 29px;
+  text-align: center;
+
+  div {
+    p:nth-child(1) {
+      .iconfont {
+        font-size: 50px;
+        color: red;
+        width: 90px;
+        height: 90px;
+        line-height: 90px;
+        border-radius: 45px;
+        background: #ffeef2;
+        display: inline-block;
+      }
+    }
+
+    p:nth-child(2) {
+      margin-top: 10px;
+      font-size: 25px;
+      color: gray;
+    }
+  }
+}
+
+.wire {
+  border-bottom: 1px solid #f5f2f0;
+}
+
+.recommendMUsic {
+  margin: 29px;
+
+  .recommendMusicTitle {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    padding-top: 10px;
+
+    div:nth-child(1) {
+      font-size: 33px;
+      font-weight: 500;
+    }
+
+    div:nth-child(2) {
+      border: 1px solid #666666;
+      border-radius: 20px;
+      width: 110px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      font-size: 25px;
+    }
+  }
+
+  .recommendMusicContent {
+    width: 692px;
+    margin-top: 30px;
+
+    p {
+      font-size: 25px;
+    }
+
+    p:nth-child(1) {
+      position: absolute;
+      right: 13%;
+      color: white;
+      z-index: 99;
+      top: -4%;
+      box-shadow: gray;
+      margin-top: 18px;
+      border-radius: 15px;
+      background: rgba(0, 0, 0, 0.3);
+      filter: blur(0.8);
+
+      span:nth-child(1) {
+        i {
+          font-size: 20px;
+          vertical-align: middle;
+          display: inline-block;
+          margin-top: -4px;
+        }
+      }
+
+      span:nth-child(2) {
+        font-size: 20px;
+      }
+    }
+
+    p:nth-child(3) {
+      position: relative;
+      height: 50px;
+      line-height: 50px;
+      color: black;
+    }
+
+    .img {
+      border-radius: 20px;
+    }
+  }
+}
+
+.recommendNewMusicTitle {
+  display: flex;
+  margin: 29px;
+  //background: red;
+  height: 50px;
+  justify-content: space-between;
+
+  div:nth-child(1) {
+    span:nth-child(1) {
+      margin-right: 10px;
+
+      i {
+        font-size: 35px;
+        display: inline-block;
+        margin-top: 5px;
+      }
+    }
+  }
+
+  div:nth-child(2) {
+    border: 1px solid #666666;
+    border-radius: 20px;
+    width: 110px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 25px;
+
+    span:nth-child(1) {
+      display: inline-block;
+      margin-right: 4px;
+    }
+  }
+}
+
+.recommendNewMusicContent {
+  margin: 0 29px 200px 29px;
+
+  .my-swipe {
+    display: flex;
+
+    .song {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      height: 100px;
+
+      .left {
+        display: flex;
+        width: 570px;
+
+        div:nth-child(1) {
+          img {
+            height: 100px;
+            width: 100px;
+            border-radius: 20px;
+          }
+        }
+
+        div:nth-child(2) {
+          display: flex;
+          height: 100px;
+          line-height: 100px;
+          margin-left: 29px;
+
+          span:nth-child(1) {
+            font-size: 30px;
+          }
+
+          span:nth-child(2) {
+            font-size: 20px;
+            color: #666666;
+            margin: 0 5px;
+          }
+
+          span:nth-child(3) {
+            font-size: 20px;
+            color: #666666;
+          }
+        }
+      }
+
+      .right {
+        display: flex;
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        justify-content: center;
+
+        i {
+          font-size: 40px;
+          color: black;
+        }
+      }
+    }
+  }
+
+}
