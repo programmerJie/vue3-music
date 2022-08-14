@@ -6,7 +6,7 @@
   >
     目录
   </van-popup>
-<!--  导航栏-->
+  <!--  导航栏-->
   <div class="navbar">
     <div>
       <i class="iconfont" @click="showPopup">&#xe60c;</i>
@@ -21,7 +21,7 @@
     </div>
     <div><i class="iconfont">&#xe7e8;</i></div>
   </div>
-<!--  轮播-->
+  <!--  轮播-->
   <div class="bannar">
     <van-swipe
         :autoplay="3000"
@@ -39,7 +39,7 @@
       </van-swipe-item>
     </van-swipe>
   </div>
-<!--  标签栏-->
+  <!--  标签栏-->
   <div class="tabBar">
     <van-swipe :loop="false" :width="70" :show-indicators="false">
       <van-swipe-item>
@@ -104,9 +104,9 @@
       </van-swipe-item>
     </van-swipe>
   </div>
-<!--  虚线-->
+  <!--  虚线-->
   <div class="wire"></div>
-<!--  歌单列表-->
+  <!--  歌单列表-->
   <div class="recommendMUsic">
     <div class="recommendMusicTitle">
       <div>推荐歌单</div>
@@ -139,7 +139,7 @@
       </van-swipe>
     </div>
   </div>
-<!--  推荐歌曲-->
+  <!--  推荐歌曲-->
   <div class="recommendNewMusicTitle">
     <div>
       <span><i class="iconfont">&#xec08;</i></span>
@@ -151,6 +151,59 @@
     </div>
   </div>
   <div class="recommendNewMusicContent">
+    <van-swipe class="my-swipe" :show-indicators="false">
+      <van-swipe-item>
+        <div class="song" v-for="item in recommendSong.data.slice(0,3)" :key="item">
+          <div class="left">
+            <div>
+              <img :src="item.picUrl" loading="lazy" alt="">
+            </div>
+            <div>
+              <span>{{ item.name }}</span>
+              <span>-</span>
+              <span>{{ item['song']['artists'][0].name }}</span>
+            </div>
+          </div>
+          <router-link :to="{ path: '/mv', query: { id: item['song']['mvid'] } }">
+          <div class="right" v-if="item['song']['mvid']!==0"><i class="iconfont">&#xe665;</i></div>
+          </router-link>
+        </div>
+      </van-swipe-item>
+      <van-swipe-item>
+        <div class="song" v-for="item in recommendSong.data.slice(3,6)" :key="item">
+          <div class="left">
+            <div>
+              <img :src="item.picUrl" loading="lazy" alt="">
+            </div>
+            <div>
+              <span>{{ item.name }}</span>
+              <span>-</span>
+              <span>{{ item['song']['artists'][0].name }}</span>
+            </div>
+          </div>
+            <div class="right" v-if="item['song']['mvid']!==0">
+              <i class="iconfont">&#xe665;</i>
+            </div>
+        </div>
+      </van-swipe-item>
+      <van-swipe-item>
+        <div class="song" v-for="item in recommendSong.data.slice(6,9)" :key="item">
+          <div class="left">
+            <div>
+              <img :src="item.picUrl" loading="lazy" alt="">
+            </div>
+            <div>
+              <span>{{ item.name }}</span>
+              <span>-</span>
+              <span>{{ item['song']['artists'][0].name }}</span>
+            </div>
+          </div>
+          <router-link :to="{ path: '/mv', query: { id: item['song']['mvid'] } }">
+          <div class="right"><i class="iconfont">&#xe665;</i></div>
+          </router-link>
+        </div>
+      </van-swipe-item>
+    </van-swipe>
   </div>
 </template>
 <script setup lang="ts">
@@ -173,6 +226,9 @@ import {
 const store = storeData();
 const router = useRouter();
 const show = ref(false);
+const btns = ()=>{
+
+}
 //轮播图片
 const banners: FindTypeBanners = reactive({
   data: [],
@@ -191,7 +247,8 @@ const showPopup = (): void => {
 };
 //推荐歌曲
 const recommendSong: FindTypeRecommendSong = reactive({
-  data: []
+  data: [],
+
 })
 onMounted(async () => {
   const Banner = await BannerApi();
@@ -234,6 +291,7 @@ const ellipsis = (data: string): string => {
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .navbar {
   margin: 29px;
   height: 70px;
@@ -310,9 +368,11 @@ const ellipsis = (data: string): string => {
     }
   }
 }
-.wire{
+
+.wire {
   border-bottom: 1px solid #f5f2f0;
 }
+
 .recommendMUsic {
   margin: 29px;
 
@@ -421,6 +481,66 @@ const ellipsis = (data: string): string => {
 }
 
 .recommendNewMusicContent {
-  margin: 0 29px;
+  margin: 0 29px 200px 29px;
+
+  .my-swipe {
+    display: flex;
+
+    .song {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      height: 100px;
+
+      .left {
+        display: flex;
+        width: 570px;
+
+        div:nth-child(1) {
+          img {
+            height: 100px;
+            width: 100px;
+            border-radius: 20px;
+          }
+        }
+
+        div:nth-child(2) {
+          display: flex;
+          height: 100px;
+          line-height: 100px;
+          margin-left: 29px;
+
+          span:nth-child(1) {
+            font-size: 30px;
+          }
+
+          span:nth-child(2) {
+            font-size: 20px;
+            color: #666666;
+            margin: 0 5px;
+          }
+
+          span:nth-child(3) {
+            font-size: 20px;
+            color: #666666;
+          }
+        }
+      }
+
+      .right {
+        display: flex;
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        justify-content: center;
+
+        i {
+          font-size: 40px;
+          color: black;
+        }
+      }
+    }
+  }
+
 }
 </style>

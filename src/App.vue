@@ -100,7 +100,6 @@ const showPopup = () => {
       position="bottom"
       close-icon="arrow-down"
       :style="{ height: '100%' }">
-    hello
   </van-popup>
 </template>
 <style scoped lang="less">
@@ -128,6 +127,7 @@ const showPopup = () => {
 
   .left {
     padding-left: 29px;
+    width: 520px;
 
     span:nth-child(1) {
       .rotate {
@@ -193,12 +193,14 @@ const showPopup = () => {
   }
 
   .right {
+    margin-right: 29px;
     span {
       vertical-align: middle;
+      padding: 0 15px;
     }
 
     span:nth-child(1) {
-      margin-right: 30px;
+      display: inline-block;
 
       i {
         font-size: 50px;
@@ -206,14 +208,11 @@ const showPopup = () => {
     }
 
     span:nth-child(2) {
+      display: inline-block;
       i {
         font-size: 50px;
       }
     }
-  }
-
-  .right {
-    padding-right: 29px;
   }
 }
 
@@ -248,7 +247,5 @@ const showPopup = () => {
   }
 }
 
-.van-icon:before {
-  font-size: 40px !important;
-}
+
 </style>

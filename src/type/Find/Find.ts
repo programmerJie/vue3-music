@@ -15,5 +15,5 @@ export interface FindTypeSearchKwords {
 
 //定义推荐歌曲的数据类型
 export interface FindTypeRecommendSong {
-    data: any
+    data: any,
 }
