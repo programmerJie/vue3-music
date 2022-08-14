@@ -1,6 +1,7 @@
 //把main.ts里vant的按需引入抽离出来易于管理
 import {createApp} from "vue";
 import App from "../App.vue";
+import '@vant/touch-emulator';
 ///vue实例
 const app = createApp(App)
 //引入标签栏
@@ -15,7 +16,10 @@ import {PullRefresh} from 'vant';
 import {Loading} from 'vant';
 //引入图片
 import {Image as VanImage} from 'vant';
-
+//引入进度条
+import { Progress } from 'vant';
+//创建进度条实例
+app.use(Progress);
 //创建标签栏实例
 app.use(Tabbar);
 app.use(TabbarItem);

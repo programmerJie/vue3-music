@@ -14,6 +14,9 @@ const show = ref(false);
 const showPopup = () => {
   show.value = true
 }
+const btn = () => {
+  show.value = false
+}
 </script>
 <template>
   <router-view v-slot="{ Component }">
@@ -43,7 +46,7 @@ const showPopup = () => {
             round
             :src="store.music.al.picUrl"
             class="img"
-            :class="{ rotate: store.ifShow.ifFalse, paused: store.ifShow.ifTrue }"
+            :class="{ rotate1: store.ifShow.ifFalse, paused: store.ifShow.ifTrue }"
         />
       </span>
       <span>{{ store.music.name }}</span>
@@ -93,159 +96,50 @@ const showPopup = () => {
       <div>云村</div>
     </van-tabbar-item>
   </van-tabbar>
-  <van-popup
-      v-model:show="show"
-      closeable
-      close-icon-position="top-left"
-      position="bottom"
-      close-icon="arrow-down"
-      :style="{ height: '100%' }">
+  <van-popup v-model:show="show" position="bottom" :style="{ height: '100%' }" class="popup">
+    <van-image :src="store.music.al.picUrl" lazy-load class="img">
+      <template v-slot:loading>
+        <van-loading type="spinner" size="20"/>
+      </template>
+    </van-image>
+    <div class="top">
+      <div @click="btn">
+        <span><i class="iconfont">&#xe69b;</i></span>
+      </div>
+      <div>
+        <span>{{ store.music.name }}</span>
+        <span>{{ store.music.ar[0].name }}</span>
+      </div>
+      <div>
+        <span><i class="iconfont">&#xe86e;</i></span>
+      </div>
+    </div>
+    <div class="content">
+      <div><img src="./assets/images/needle.png" alt="" :class="{rotate3:store.ifShow.ifFalse}"></div>
+      <div>
+        <img src="./assets/images/disc.png" alt="" :class="{rotate2: store.ifShow.ifFalse}">
+        <img :src="store.music.al.picUrl" alt="" :class="{rotate2: store.ifShow.ifFalse}">
+      </div>
+    </div>
+    <div class="footer">
+      <div>
+        <span><i class="iconfont">&#xe60e;</i></span>
+        <span><i class="iconfont">&#xe668;</i></span>
+        <span><i class="iconfont">&#xe607;</i></span>
+        <span><i class="iconfont">&#xe763;</i></span>
+        <span><i class="iconfont">&#xe8c4;</i></span>
+      </div>
+      <div>
+        <span><i class="iconfont">&#xe61f;</i></span>
+        <span><i class="iconfont">&#xe78a;</i></span>
+        <span v-if="store.ifShow.ifTrue" @click="store.btn1()"><i class="iconfont">&#xe624;</i></span>
+        <span v-if="store.ifShow.ifFalse" @click="store.btn2()"><i class="iconfont">&#xe629;</i></span>
+        <span><i class="iconfont">&#xe7a5;</i></span>
+        <span><i class="iconfont">&#xe637;</i></span>
+      </div>
+    </div>
   </van-popup>
 </template>
 <style scoped lang="less">
-.iconfont {
-  font-family: "iconfont" !important;
-  font-size: 35px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-stroke-width: 0.2px;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.playEr {
-  height: 90px;
-  line-height: 90px;
-  width: 750px;
-  position: fixed;
-  background: #ffffff;
-  border-top: 1px solid #f5f2f0;
-  left: 0;
-  right: 0;
-  bottom: 7%;
-  display: flex;
-  justify-content: space-between;
-
-  .left {
-    padding-left: 29px;
-    width: 520px;
-
-    span:nth-child(1) {
-      .rotate {
-        animation: rotate 18s linear 0s infinite;
-        @keyframes rotate {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-      }
-
-      .play {
-        animation-play-state: running;
-      }
-
-      .paused {
-        animation-play-state: paused;
-      }
-    }
-
-    span {
-      vertical-align: middle;
-    }
-
-    span:nth-child(1) {
-      background: #000;
-      height: 84px;
-      width: 84px;
-      border-radius: 42px;
-      display: inline-block;
-
-      .img {
-        width: 60px;
-        height: 60px;
-        border-radius: 30px;
-        display: inline-block;
-        margin-left: 15%;
-        margin-top: 15%;
-      }
-    }
-
-    span:nth-child(2) {
-      display: inline-block;
-      margin-left: 10px;
-      font-size: 28px;
-    }
-
-    span:nth-child(3) {
-      display: inline-block;
-      font-size: 25px;
-      margin: 0 5px;
-    }
-
-    span:nth-child(4) {
-      display: inline-block;
-      font-size: 20px;
-      color: #666666;
-      padding-top: 3px;
-    }
-  }
-
-  .right {
-    margin-right: 29px;
-    span {
-      vertical-align: middle;
-      padding: 0 15px;
-    }
-
-    span:nth-child(1) {
-      display: inline-block;
-
-      i {
-        font-size: 50px;
-      }
-    }
-
-    span:nth-child(2) {
-      display: inline-block;
-      i {
-        font-size: 50px;
-      }
-    }
-  }
-}
-
-.tabBar {
-  height: 90px;
-  text-align: center;
-
-  .find {
-    div:nth-child(1) {
-      i {
-        font-size: 50px;
-      }
-    }
-
-    div:nth-child(2) {
-      padding-top: 10px;
-      font-size: 25px;
-    }
-  }
-
-  .mine {
-    div:nth-child(1) {
-      i {
-        font-size: 50px;
-      }
-    }
-
-    div:nth-child(2) {
-      padding-top: 10px;
-      font-size: 25px;
-    }
-  }
-}
-
-
+@import "./assets/CSS/App";
 </style>

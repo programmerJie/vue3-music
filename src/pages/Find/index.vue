@@ -260,7 +260,6 @@ onMounted(async () => {
   store.search = Search.data.data.realkeyword
   const song = await recommendSongApi()
   recommendSong.data = song.data.result
-  console.log(song.data.result)
 });
 //把推荐歌单的音乐播放次数转换为文字单位
 const count = (data: number): string | number => {

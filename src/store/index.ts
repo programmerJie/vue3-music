@@ -118,6 +118,10 @@ export const storeData = defineStore("store", {
                 this.ifShow.ifTrue = true;
                 this.ifShow.ifFalse = false;
             }
+            // @ts-ignore
+            if (this.audio.ended) {
+                this.ifShow.ifTrue = true
+            }
         },
         recommendSong(picUrl: string, name: any, arName: any, id: any) {
             this.music.al.picUrl = picUrl
@@ -133,6 +137,10 @@ export const storeData = defineStore("store", {
             } else {
                 this.ifShow.ifTrue = true;
                 this.ifShow.ifFalse = false;
+            }
+            // @ts-ignore
+            if (this.audio.ended) {
+                this.ifShow.ifTrue = true
             }
         },
     },
