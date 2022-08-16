@@ -2,36 +2,26 @@
 import {useRoute} from "vue-router";
 import {onMounted, reactive, ref} from "vue";
 import {storeData} from "./store";
-import {lyricApi} from "./api/Find/Lyric";
 
 const store = storeData();
 const route = useRoute();
-const yinyue = ref(null);
+const player = ref(null);
 onMounted(async () => {
-  store.audio = yinyue;
+  store.audio = player;
   console.log(store.lyric)
 });
 //解析戒烟的歌词
 let arr = store.lyric.lrc.lyric.split(/\n/)
 arr.forEach(item => {
   if (item === '') return
-  let time = item.match(/\[(.+?)\]/g)
+  let time: any = item.match(/\[\d{2}:\d{2}.\d{2,3}]/)
   let lyric = item.slice(10)
   if (lyric[0] === ']' || lyric[0] === '') {
     lyric = lyric.slice(1)
   }
   store.times.push(time)
   store.lyrics.push(lyric)
-
 })
-const show = ref(false);
-const showPopup = () => {
-  show.value = true;
-};
-const btn = () => {
-  show.value = false;
-};
-
 </script>
 <template>
   <router-view v-slot="{ Component }">
@@ -46,7 +36,9 @@ const btn = () => {
       @ended="store.ended()"
       @play="store.play()"
       @pause="store.pause()"
-      ref="yinyue"
+      @timeupdate="store.time()"
+      @durationchange="store.totalTime()"
+      ref="player"
       v-show="false"
   ></audio>
   <div
@@ -58,7 +50,7 @@ const btn = () => {
       route.path !== '/search'
     "
   >
-    <div class="left" @click="showPopup">
+    <div class="left" @click="store.showPopup()">
       <span>
         <van-image
             round
@@ -115,7 +107,7 @@ const btn = () => {
     </van-tabbar-item>
   </van-tabbar>
   <van-popup
-      v-model:show="show"
+      v-model:show="store.show"
       position="bottom"
       :style="{ height: '100%' }"
       class="popup"
@@ -126,7 +118,7 @@ const btn = () => {
       </template>
     </van-image>
     <div class="top">
-      <div @click="btn">
+      <div @click="store.btn()">
         <span><i class="iconfont">&#xe69b;</i></span>
       </div>
       <div>
@@ -170,6 +162,11 @@ const btn = () => {
         <span><i class="iconfont">&#xe607;</i></span>
         <span><i class="iconfont">&#xe763;</i></span>
         <span><i class="iconfont">&#xe8c4;</i></span>
+      </div>
+      <div>
+        <span><van-progress :percentage="50" stroke-width="1.5" inactive
+                            :show-pivot="false"
+        /></span>
       </div>
       <div>
         <span><i class="iconfont">&#xe61f;</i></span>

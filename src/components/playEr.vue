@@ -1,13 +1,13 @@
 <template>
   <div class="playEr">
-    <div class="left" @click="showPopup">
+    <div class="left" @click="store.showPopup()">
       <span>
         <van-image
             :src="store.music.al.picUrl"
             round
             lazy-load
             class="img rotate1"
-            :class="{ play: store.ifShow.ifFalse}"
+            :class="{ play:store.ifShow.ifFalse}"
         >
           <template v-slot:loading>
             <van-loading/>
@@ -29,7 +29,7 @@
     </div>
   </div>
   <van-popup
-      v-model:show="show"
+      v-model:show="store.show"
       position="bottom"
       :style="{ height: '100%' }"
       class="popup"
@@ -40,7 +40,7 @@
       </template>
     </van-image>
     <div class="top">
-      <div @click="btn">
+      <div @click="store.btn()">
         <span><i class="iconfont">&#xe69b;</i></span>
       </div>
       <div>
@@ -108,13 +108,6 @@ import {storeData} from "../store";
 
 const store = storeData();
 const route = useRoute();
-const show = ref(false);
-const showPopup = () => {
-  show.value = true;
-};
-const btn = () => {
-  show.value = false;
-};
 //解析戒烟的歌词
 let arr = store.lyric.lrc.lyric.split(/\n/)
 arr.forEach(item => {

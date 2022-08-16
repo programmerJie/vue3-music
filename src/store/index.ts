@@ -1,9 +1,11 @@
 import {defineStore} from "pinia";
+//引入歌词api
 import {lyricApi} from "../api/Find/Lyric";
 
 export const storeData = defineStore("store", {
     state: () => {
         return {
+            show: false,
             ifShow: {
                 ifTrue: true,
                 ifFalse: false,
@@ -131,6 +133,14 @@ export const storeData = defineStore("store", {
         };
     },
     actions: {
+        //显示歌词弹出层
+        showPopup() {
+            this.show = true;
+        },
+        //关闭歌词弹出层
+        btn() {
+            this.show = false;
+        },
         //播放完成
         ended() {
             this.ifShow.ifTrue = true
@@ -138,17 +148,17 @@ export const storeData = defineStore("store", {
         },
         //播放
         play() {
-            this.ifShow.ifTrue = false
-            this.ifShow.ifFalse = true
             // @ts-ignore
             this.audio.play()
+            this.ifShow.ifTrue = false
+            this.ifShow.ifFalse = true
         },
         //暂停
         pause() {
-            this.ifShow.ifTrue = true
-            this.ifShow.ifFalse = false
             // @ts-ignore
             this.audio.pause()
+            this.ifShow.ifTrue = true
+            this.ifShow.ifFalse = false
         },
         //歌词显示
         lyricTrue() {
@@ -160,8 +170,19 @@ export const storeData = defineStore("store", {
             this.lyricIfShow.ifTrue = true
             this.lyricIfShow.ifFalse = false
         },
+        time() {
+            // @ts-ignore
+            // console.log(this.audio.currentTime)
+
+        },
+        totalTime() {
+            // @ts-ignore
+            // console.log(this.audio.duration)
+        },
         //歌单列表
         async musicId(data: any) {
+            //显示歌词弹出层
+            this.show = true
             //点击歌单列表把数据传给pinia
             this.music = data;
             // @ts-ignore
@@ -203,6 +224,8 @@ export const storeData = defineStore("store", {
         },
         //推荐歌曲
         async recommendSong(picUrl: string, name: any, arName: any, id: any) {
+            //显示歌词弹出层
+            this.show = true
             //点击推荐歌曲把数据传进pinia
             this.music.al.picUrl = picUrl
             this.music.name = name
