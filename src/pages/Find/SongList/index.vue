@@ -64,7 +64,7 @@
         <span>{{ songListdetails.commentCount }}</span>
       </router-link>
     </div>
-    <div @click="showShare = true">
+    <div>
       <span><i class="iconfont">&#xe86e;&nbsp;</i></span>
       <span>{{ songListdetails.shareCount }} </span>
     </div>
