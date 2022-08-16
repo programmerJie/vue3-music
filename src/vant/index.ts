@@ -18,6 +18,10 @@ import {Loading} from 'vant';
 import {Image as VanImage} from 'vant';
 //引入进度条
 import { Progress } from 'vant';
+//引入分享面板
+import { ShareSheet } from 'vant';
+//创建分线面板实例
+app.use(ShareSheet)
 //创建进度条实例
 app.use(Progress);
 //创建标签栏实例

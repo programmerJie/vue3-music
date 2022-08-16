@@ -113,11 +113,9 @@ const search = async (data: any) => {
   //如果值为空就用pinia默认的搜索关键字,否则就是用户输入的搜索关键字
   if (data === '') {
     const res = await searchApi(store.search as any);
-    console.log(res.data.result.songs)
     SongList.data = res.data.result.songs
   } else {
     const res = await searchApi(data);
-    console.log(res.data.result.songs)
     SongList.data = res.data.result.songs
   }
 }

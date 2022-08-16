@@ -64,7 +64,7 @@
         <span>{{ songListdetails.commentCount }}</span>
       </router-link>
     </div>
-    <div>
+    <div @click="showShare = true">
       <span><i class="iconfont">&#xe86e;&nbsp;</i></span>
       <span>{{ songListdetails.shareCount }} </span>
     </div>
@@ -108,7 +108,7 @@
 </template>
 <script lang="ts" setup>
 import {useRouter, useRoute} from "vue-router";
-import {onMounted, reactive, computed,} from "vue";
+import {onMounted, reactive, computed, ref} from "vue";
 import {songListDetailsApi, songListApi, musicIfUseApi} from "../../../api/Find/SongList";
 import PlayEr from "../../../components/playEr.vue";
 import {storeData} from "../../../store";
@@ -153,7 +153,6 @@ onMounted(async () => {
   songListdetails.trackCount = res.data.playlist.trackCount;
   const res2 = await songListApi(route.query.id as any);
   songList.music = res2.data.songs;
-  console.log(res2.data.songs)
 });
 //把播放次数的数字转换为汉字
 const count = (data: number): string | number => {

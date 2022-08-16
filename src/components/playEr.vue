@@ -7,7 +7,7 @@
             round
             lazy-load
             class="img rotate1"
-            :class="{ play: store.ifShow.ifFalse, pause: store.ifShow.ifTrue}"
+            :class="{ play: store.ifShow.ifFalse}"
         >
           <template v-slot:loading>
             <van-loading/>
@@ -51,7 +51,7 @@
         <span><i class="iconfont">&#xe86e;</i></span>
       </div>
     </div>
-    <div class="content">
+    <div class="content1" v-if="store.lyricIfShow.ifTrue" @click="store.lyricTrue()">
       <div>
         <img
             src="../assets/images/needle.png"
@@ -64,15 +64,18 @@
             src="../assets/images/disc.png"
             alt=""
             class="rotate2"
-            :class="{ play: store.ifShow.ifFalse, pause: store.ifShow.ifTrue}"
+            :class="{ play: store.ifShow.ifFalse }"
         />
         <img
             :src="store.music.al.picUrl"
             alt=""
             class="rotate2"
-            :class="{ play: store.ifShow.ifFalse, pause: store.ifShow.ifTrue }"
+            :class="{ play: store.ifShow.ifFalse }"
         />
       </div>
+    </div>
+    <div class="content2" v-if="store.lyricIfShow.ifFalse" @click="store.lyricFalse()">
+      <div v-for="item in store.lyrics" :key="item">{{ item }}</div>
     </div>
     <div class="footer">
       <div>
@@ -112,6 +115,19 @@ const showPopup = () => {
 const btn = () => {
   show.value = false;
 };
+//解析戒烟的歌词
+let arr = store.lyric.lrc.lyric.split(/\n/)
+arr.forEach(item => {
+  if (item === '') return
+  let time = item.match(/\[(.+?)\]/g)
+  let lyric = item.slice(10)
+  if (lyric[0] === ']' || lyric[0] === '') {
+    lyric = lyric.slice(1)
+  }
+  store.times.push(time)
+  store.lyrics.push(lyric)
+
+})
 </script>
 <style scoped lang="less">
 .iconfont {
@@ -143,6 +159,7 @@ const btn = () => {
     span:nth-child(1) {
       .rotate1 {
         animation: rotate 18s linear 0s infinite forwards;
+        animation-play-state: paused;
         @keyframes rotate {
           from {
             transform: rotate(0deg);
@@ -155,10 +172,6 @@ const btn = () => {
 
       .play {
         animation-play-state: running;
-      }
-
-      .pause {
-        animation-play-state: paused;
       }
     }
 
@@ -285,13 +298,14 @@ const btn = () => {
     }
   }
 
-  .content {
+  .content1 {
     text-align: center;
     //background: #000;
     height: 700px;
 
     .rotate2 {
       animation: rotate 18s linear 0s infinite;
+      animation-play-state: paused;
       @keyframes rotate {
         from {
           transform: rotate(0deg);
@@ -306,9 +320,6 @@ const btn = () => {
       animation-play-state: running;
     }
 
-    .pause {
-      animation-play-state: paused;
-    }
 
     .rotate3 {
       transform-origin: 0 0;
@@ -346,6 +357,19 @@ const btn = () => {
         position: relative;
         top: -430px;
       }
+    }
+  }
+
+  .content2 {
+    margin: 0 29px 0 29px;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    height: 750px;
+    overflow: auto;
+    //background: red;
+    div {
+      margin: 30px;
     }
   }
 
