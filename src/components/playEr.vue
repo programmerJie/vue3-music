@@ -301,7 +301,7 @@ arr.forEach(item => {
   .content1 {
     text-align: center;
     //background: #000;
-    height: 700px;
+    height: 870px;
 
     .rotate2 {
       animation: rotate 18s linear 0s infinite;
@@ -361,11 +361,10 @@ arr.forEach(item => {
   }
 
   .content2 {
-    margin: 0 29px 0 29px;
     color: white;
     font-size: 30px;
     text-align: center;
-    height: 750px;
+    height: 870px;
     overflow: auto;
     //background: red;
     div {
