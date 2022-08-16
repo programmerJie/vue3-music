@@ -376,7 +376,6 @@ arr.forEach(item => {
     position: fixed;
     width: 100%;
     bottom: 0;
-    margin-bottom: 50px;
 
     div:nth-child(1) {
       display: flex;
