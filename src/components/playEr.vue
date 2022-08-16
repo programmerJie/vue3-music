@@ -86,6 +86,11 @@
         <span><i class="iconfont">&#xe8c4;</i></span>
       </div>
       <div>
+        <span><van-progress :percentage="50" stroke-width="1.5" inactive
+                            :show-pivot="false"
+        /></span>
+      </div>
+      <div>
         <span><i class="iconfont">&#xe61f;</i></span>
         <span><i class="iconfont">&#xe78a;</i></span>
         <span v-if="store.ifShow.ifTrue" @click="store.play()"
@@ -393,6 +398,10 @@ arr.forEach(item => {
     }
 
     div:nth-child(2) {
+      margin: 30px 29px 0 29px;
+    }
+
+    div:nth-child(3) {
       display: flex;
       justify-content: center;
       text-align: center;
