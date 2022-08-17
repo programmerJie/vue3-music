@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useRoute} from "vue-router";
-import {onMounted, reactive, ref} from "vue";
+import {onMounted, ref} from "vue";
 import {storeData} from "./store";
 
 const store = storeData();
@@ -18,8 +18,8 @@ arr.forEach(item => {
   if (lyric[0] === ']' || lyric[0] === '') {
     lyric = lyric.slice(1)
   }
-  store.times.push(time)
-  store.lyrics.push(lyric)
+  store.times.push(time);
+  store.lyrics.push(lyric);
 })
 </script>
 <template>
