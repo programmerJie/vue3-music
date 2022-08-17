@@ -8,7 +8,6 @@ const route = useRoute();
 const player = ref(null);
 onMounted(async () => {
   store.audio = player;
-  console.log(store.lyric)
 });
 //解析戒烟的歌词
 let arr = store.lyric.lrc.lyric.split(/\n/)

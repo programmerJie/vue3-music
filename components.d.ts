@@ -8,17 +8,12 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     PlayEr: typeof import('./src/components/playEr.vue')['default']
-    PlayEY: typeof import('./src/components/playEr.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    VanButton: typeof import('vant/es')['Button']
-    VanCell: typeof import('vant/es')['Cell']
     VanImage: typeof import('vant/es')['Image']
     VanLoading: typeof import('vant/es')['Loading']
     VanPopup: typeof import('vant/es')['Popup']
     VanProgress: typeof import('vant/es')['Progress']
-    VanPullRefresh: typeof import('vant/es')['PullRefresh']
-    VanShareSheet: typeof import('vant/es')['ShareSheet']
     VanSwipe: typeof import('vant/es')['Swipe']
     VanSwipeItem: typeof import('vant/es')['SwipeItem']
     VanTabbar: typeof import('vant/es')['Tabbar']
