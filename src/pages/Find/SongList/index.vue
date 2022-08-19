@@ -107,9 +107,9 @@
   <play-er></play-er>
 </template>
 <script lang="ts" setup>
-import {useRouter, useRoute} from "vue-router";
-import {onMounted, reactive, computed, ref} from "vue";
-import {songListDetailsApi, songListApi, musicIfUseApi} from "../../../api/Find/SongList";
+import {useRoute, useRouter} from "vue-router";
+import {onMounted, reactive} from "vue";
+import {songListApi, songListDetailsApi} from "../../../api/Find/SongList";
 import PlayEr from "../../../components/playEr.vue";
 import {storeData} from "../../../store";
 import {SongListDetailsType, SongListType} from "../../../type/Find/SongList";
@@ -217,5 +217,5 @@ const result5 = (data: string): string => {
 </script>
 
 <style scoped lang="less">
-@import "../../../assets/CSS/Find/SongList/index";
+@import "index";
 </style>

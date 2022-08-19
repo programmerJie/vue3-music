@@ -80,7 +80,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import {useRouter, useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import {songlistCommentApi} from "../../../api/Find/Comment";
 import {onMounted, reactive} from "vue";
 import {CommentType} from "../../../type/Find/Comment";
@@ -124,5 +124,5 @@ const btn3 = (): void => {
 </script>
 
 <style scoped lang="less">
-@import "../../../assets/CSS/Find/Comment/index";
+@import "index";
 </style>

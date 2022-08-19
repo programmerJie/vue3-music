@@ -62,10 +62,9 @@
 
 <script lang="ts" setup>
 import PlayEr from "../../../components/playEr.vue";
-import {useRouter} from "vue-router";
-import {useRoute} from "vue-router";
-import {searchApi, hotSearchListApi} from "../../../api/Find/Search";
-import {onMounted, onUpdated, reactive, ref, watch} from "vue";
+import {useRoute, useRouter} from "vue-router";
+import {hotSearchListApi, searchApi} from "../../../api/Find/Search";
+import {onMounted, reactive, ref} from "vue";
 import {storeData} from "../../../store";
 
 const searchHistory: any = reactive({
@@ -134,5 +133,5 @@ onMounted(async () => {
 </script>
 
 <style scoped lang="less">
-@import "../../../assets/CSS/Find/Search/index";
+@import "index";
 </style>

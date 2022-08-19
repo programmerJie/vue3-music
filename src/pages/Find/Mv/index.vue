@@ -134,5 +134,5 @@ const btn3 = (): void => {
 </script>
 
 <style scoped lang="less">
-@import "../../../assets/CSS/Find/Mv/index";
+@import "index";
 </style>

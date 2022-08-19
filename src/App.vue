@@ -183,5 +183,5 @@ arr.forEach(item => {
   </van-popup>
 </template>
 <style scoped lang="less">
-@import "./assets/CSS/App";
+@import "App";
 </style>

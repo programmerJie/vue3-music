@@ -154,7 +154,8 @@
     <van-swipe class="my-swipe" :show-indicators="false">
       <van-swipe-item>
         <div class="song" v-for="item in recommendSong.data.slice(0,3)" :key="item">
-          <div class="left" @click="store.recommendSong(item['picUrl'],item['name'],item['song']['artists'][0].name,item['id'])">
+          <div class="left"
+               @click="store.recommendSong(item['picUrl'],item['name'],item['song']['artists'][0].name,item['id'])">
             <div>
               <img :src="item.picUrl" loading="lazy" alt="">
             </div>
@@ -170,7 +171,8 @@
         </div>
       </van-swipe-item>
       <van-swipe-item>
-        <div class="song" v-for="item in recommendSong.data.slice(3,6)" :key="item" @click="store.recommendSong(item['picUrl'],item['name'],item['song']['artists'][0].name,item['id'])">
+        <div class="song" v-for="item in recommendSong.data.slice(3,6)" :key="item"
+             @click="store.recommendSong(item['picUrl'],item['name'],item['song']['artists'][0].name,item['id'])">
           <div class="left">
             <div>
               <img :src="item.picUrl" loading="lazy" alt="">
@@ -187,7 +189,8 @@
         </div>
       </van-swipe-item>
       <van-swipe-item>
-        <div class="song" v-for="item in recommendSong.data.slice(6,9)" :key="item" @click="store.recommendSong(item['picUrl'],item['name'],item['song']['artists'][0].name,item['id'])">
+        <div class="song" v-for="item in recommendSong.data.slice(6,9)" :key="item"
+             @click="store.recommendSong(item['picUrl'],item['name'],item['song']['artists'][0].name,item['id'])">
           <div class="left">
             <div>
               <img :src="item.picUrl" loading="lazy" alt="">
@@ -207,19 +210,14 @@
   </div>
 </template>
 <script setup lang="ts">
-import {ref, onMounted, reactive} from "vue";
-import {
-  BannerApi,
-  recommendMusicApi,
-  searchKwordsApi,
-} from "../../api/Find/Find";
+import {onMounted, reactive, ref} from "vue";
+import {BannerApi, recommendMusicApi, recommendSongApi, searchKwordsApi,} from "../../api/Find/Find";
 import {useRouter} from "vue-router";
 import {storeData} from "../../store";
-import {recommendSongApi} from "../../api/Find/Find";
 import {
   FindTypeBanners,
-  FindTypeRecommendSong,
   FindTypeRecommendMusicList,
+  FindTypeRecommendSong,
   FindTypeSearchKwords
 } from "../../type/Find/Find";
 
@@ -282,5 +280,5 @@ const ellipsis = (data: string): string => {
 </script>
 
 <style scoped lang="less">
-@import "../../assets/CSS/Find/index";
+@import "index";
 </style>
