@@ -1,6 +1,6 @@
 import axios from "axios";
 
 const request = axios.create({
-  baseURL: "https://music-api-theta-henna.vercel.app",
+  baseURL: "http://localhost:3000",
 });
 export default request;
